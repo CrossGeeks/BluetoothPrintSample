@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Shiny.BluetoothLE.Central;
+using Shiny.BluetoothLE;
 using Shiny;
 using System.Reactive.Linq;
 using System.Collections.ObjectModel;
@@ -15,7 +15,7 @@ namespace BluetoothPrintSample.ViewModels
     public class MainPageViewModel: INotifyPropertyChanged
     {
         IDisposable _scanDisposable, _connectedDisposable;
-        ICentralManager _centralManager = Shiny.ShinyHost.Resolve<ICentralManager>();
+        IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
 
         public bool IsScanning { get; set; }
         public ObservableCollection<IPeripheral> Peripherals { get; set; } = new ObservableCollection<IPeripheral>();
