@@ -7,8 +7,8 @@ namespace BluetoothPrintSample
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.UseBleCentral();
-            services.UseBlePeripherals();
+            services.UseBleClient();
+            services.UseBleHosting();
         }
     }
 }

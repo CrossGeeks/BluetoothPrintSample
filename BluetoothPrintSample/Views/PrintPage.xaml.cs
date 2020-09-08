@@ -1,5 +1,5 @@
 ﻿using BluetoothPrintSample.ViewModels;
-using Shiny.BluetoothLE.Central;
+using Shiny.BluetoothLE;
 using Xamarin.Forms;
 
 namespace BluetoothPrintSample.Views

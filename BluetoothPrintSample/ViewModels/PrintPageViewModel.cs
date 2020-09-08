@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
-using Shiny.BluetoothLE.Central;
+using Shiny.BluetoothLE;
 using Xamarin.Forms;
 
 namespace BluetoothPrintSample.ViewModels
@@ -32,7 +32,7 @@ namespace BluetoothPrintSample.ViewModels
 
             _perifDisposable = selectedPeripheral.WhenAnyCharacteristicDiscovered().Subscribe((characteristic) =>
             {
-                System.Diagnostics.Debug.WriteLine(characteristic.Description);
+                //System.Diagnostics.Debug.WriteLine(characteristic.Description); //this is not suppported at this momment, and no neccesary I guess
                 if (characteristic.CanWrite() && !characteristic.CanRead() && !characteristic.CanNotify())
                 {
                     IsReadyToPrint = true;

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Shiny.BluetoothLE.Central;
+using Shiny.BluetoothLE;
 using Shiny;
 using System.Reactive.Linq;
 using System.Collections.ObjectModel;
@@ -12,10 +12,10 @@ using System.Linq;
 
 namespace BluetoothPrintSample.ViewModels
 {
-    public class MainPageViewModel: INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         IDisposable _scanDisposable, _connectedDisposable;
-        ICentralManager _centralManager = Shiny.ShinyHost.Resolve<ICentralManager>();
+        IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
 
         public bool IsScanning { get; set; }
         public ObservableCollection<IPeripheral> Peripherals { get; set; } = new ObservableCollection<IPeripheral>();
@@ -29,25 +29,73 @@ namespace BluetoothPrintSample.ViewModels
         IPeripheral _selectedPeripheral;
         public IPeripheral SelectedPeripheral
         {
-            get
-            {
+            get {
                 return _selectedPeripheral;
             }
-            set
-            {
+            set {
                 _selectedPeripheral = value;
-                if(_selectedPeripheral != null)
-                  OnSelectedPeripheral(_selectedPeripheral);
+                if (_selectedPeripheral != null)
+                {
+                    App.Current.Properties.Add("defaultPrinter", _selectedPeripheral.Name);
+                    Application.Current.SavePropertiesAsync(); 
+                    OnSelectedPeripheral(_selectedPeripheral); }
             }
         }
 
         public MainPageViewModel()
         {
-            GetDeviceListCommand = new Command(GetDeviceList);
-            SetAdapterCommand = new Command(async () => await SetAdapter());
-            CheckPermissionsCommand = new Command(async () => await CheckPermissions());
-            CheckPermissionsCommand.Execute(null);
+            if (App.Current.Properties.ContainsKey("defaultPrinter"))
+            {
+                string guidName = App.Current.Properties["defaultPrinter"].ToString();
+                _connectedDisposable = _centralManager.GetConnectedPeripherals().Subscribe(scanResult =>
+                {
+                    scanResult.ToList().ForEach(
+                     item =>
+                     {
+                         if (!string.IsNullOrEmpty(item.Name) && item.Name == guidName)
+                         {
+                             Peripherals.Add(item);
+                             _centralManager.StopScan();
+                             Device.BeginInvokeOnMainThread(async () =>
+                             {
+                                 await App.Current.MainPage.Navigation.PushAsync(new PrintPage(item));
+                                 SelectedPeripheral = null;
+                             });
 
+                             _scanDisposable?.Dispose();
+                             IsScanning = _centralManager.IsScanning;
+                         }
+                     });
+
+                    _connectedDisposable?.Dispose();
+                });
+
+                if (_centralManager.IsScanning)
+                    _centralManager.StopScan();
+                if (_centralManager.Status == Shiny.AccessState.Available && !_centralManager.IsScanning)
+                {
+                    _scanDisposable = _centralManager.ScanForUniquePeripherals().Subscribe(scanResult =>
+                    {
+                        if (!string.IsNullOrEmpty(scanResult.Name) && !Peripherals.Contains(scanResult))
+                        {
+                            Peripherals.Add(scanResult);
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await App.Current.MainPage.Navigation.PushAsync(new PrintPage(scanResult));
+                                SelectedPeripheral = null;
+                            });
+                        }
+
+                    });
+                }
+            }
+            else
+            {
+                GetDeviceListCommand = new Command(GetDeviceList);
+                SetAdapterCommand = new Command(async () => await SetAdapter());
+                CheckPermissionsCommand = new Command(async () => await CheckPermissions());
+                CheckPermissionsCommand.Execute(null);
+            }
         }
 
         async Task CheckPermissions()
@@ -96,7 +144,7 @@ namespace BluetoothPrintSample.ViewModels
 
         void OnSelectedPeripheral(IPeripheral peripheral)
         {
-            Device.BeginInvokeOnMainThread(async() =>
+            Device.BeginInvokeOnMainThread(async () =>
             {
                 await App.Current.MainPage.Navigation.PushAsync(new PrintPage(peripheral));
                 SelectedPeripheral = null;
@@ -112,14 +160,15 @@ namespace BluetoothPrintSample.ViewModels
             {
                 _scanDisposable?.Dispose();
             }
-            else{
+            else
+            {
                 if (_centralManager.Status == Shiny.AccessState.Available && !_centralManager.IsScanning)
                 {
                     _scanDisposable = _centralManager.ScanForUniquePeripherals().Subscribe(scanResult =>
                     {
-                        if(!string.IsNullOrEmpty(scanResult.Name)&& !Peripherals.Contains(scanResult))
-                           Peripherals.Add(scanResult);
-                        
+                        if (!string.IsNullOrEmpty(scanResult.Name) && !Peripherals.Contains(scanResult))
+                            Peripherals.Add(scanResult);
+
                     });
                 }
             }
