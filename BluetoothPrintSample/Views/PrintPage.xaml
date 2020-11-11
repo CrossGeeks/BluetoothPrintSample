@@ -8,7 +8,7 @@
             <Editor Text="{Binding TextToPrint}"
                     VerticalOptions="FillAndExpand"
                     Margin="40,0"/>
-            <Button Text="Print"
+            <Button Text="Print Test"
                     IsEnabled="{Binding IsReadyToPrint}"
                     Margin="40"
                     BackgroundColor="LightBlue"

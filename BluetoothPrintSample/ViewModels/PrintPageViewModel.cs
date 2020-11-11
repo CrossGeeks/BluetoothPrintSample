@@ -45,7 +45,10 @@ namespace BluetoothPrintSample.ViewModels
         
         void PrintText()
         {
-            _savedCharacteristic?.Write(Encoding.UTF8.GetBytes($"{TextToPrint}\n")).Subscribe(
+            //TEXT 100,100,"4",0,1,1,"DEMO FOR TEXT"
+            //$"{TextToPrint}\n")
+            //"CLS\r\n SELFTEST\r\n"
+            _savedCharacteristic?.Write(Encoding.UTF8.GetBytes("SELFTEST\r\n")).Subscribe(
                 result => {
                     ShowMessage("Yayy", "Data Printed");
                 },
