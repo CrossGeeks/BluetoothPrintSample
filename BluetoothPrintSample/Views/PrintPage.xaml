@@ -2,15 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BluetoothPrintSample.Views.PrintPage"
-             Title="Print">
+             Title="打印页面">
     <ContentPage.Content>
        <StackLayout VerticalOptions="FillAndExpand">
+            <!--
             <Editor Text="{Binding TextToPrint}"
                     VerticalOptions="FillAndExpand"
                     Margin="40,0"/>
-            <Button Text="Print Test"
+           -->
+            <Button Text="打印标签式单据"
                     IsEnabled="{Binding IsReadyToPrint}"
-                    Margin="40"
+                    Margin="10"
                     BackgroundColor="LightBlue"
                     Command="{Binding PrintCommand}"/>
         </StackLayout>

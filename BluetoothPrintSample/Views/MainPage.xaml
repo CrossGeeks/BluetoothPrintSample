@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BluetoothPrintSample.Views.MainPage"
-             Title="选择打印机设备">
+             Title="打印机设备扫描">
     <ContentPage.Content>
         <StackLayout>
            <Button Text="扫描设备"
@@ -13,7 +13,7 @@
                      <DataTrigger TargetType="Button"
                                   Binding="{Binding IsScanning}"
                                   Value="True">
-                          <Setter Property="Text" Value="Stop"/>
+                          <Setter Property="Text" Value="停止扫描"/>
                           <Setter Property="BackgroundColor" Value="IndianRed"/>
                      </DataTrigger>
                  </Button.Triggers>
@@ -22,7 +22,7 @@
             <ActivityIndicator IsRunning="{Binding IsScanning}"
                                IsVisible="{Binding IsScanning}"
                                HorizontalOptions="Center"
-                               Color="Gray"/>
+                               Color="LightBlue"/>
  
             <ListView ItemsSource="{Binding Peripherals}"
                       HasUnevenRows="True"
