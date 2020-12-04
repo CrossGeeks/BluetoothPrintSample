@@ -1,8 +1,8 @@
-﻿using BluetoothPrintSample.ViewModels;
+﻿using Lims.Phone.ViewModels;
 using Shiny.BluetoothLE;
 using Xamarin.Forms;
 
-namespace BluetoothPrintSample.Views
+namespace Lims.Phone.Views
 {
     public partial class PrintPage : ContentPage
     {

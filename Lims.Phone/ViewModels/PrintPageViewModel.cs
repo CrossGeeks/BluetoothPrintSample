@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace BluetoothPrintSample.ViewModels
+namespace Lims.Phone.ViewModels
 {
     public class PrintPageViewModel: INotifyPropertyChanged
     {

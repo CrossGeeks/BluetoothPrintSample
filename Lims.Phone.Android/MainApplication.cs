@@ -3,7 +3,7 @@ using Android.App;
 using Android.Runtime;
 using Shiny;
 
-namespace BluetoothPrintSample.Droid
+namespace Lims.Phone.Droid
 {
 #if DEBUG
     [Application(Debuggable = true)]

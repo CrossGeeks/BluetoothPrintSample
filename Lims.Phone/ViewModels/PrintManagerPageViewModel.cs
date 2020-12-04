@@ -7,12 +7,12 @@ using Shiny;
 using System.Reactive.Linq;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using BluetoothPrintSample.Views;
+using Lims.Phone.Views;
 using System.Linq;
 
-namespace BluetoothPrintSample.ViewModels
+namespace Lims.Phone.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class PrintManagerPageViewModel : INotifyPropertyChanged
     {
         IDisposable _scanDisposable, _connectedDisposable;
         IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
@@ -42,7 +42,7 @@ namespace BluetoothPrintSample.ViewModels
             }
         }
 
-        public MainPageViewModel()
+        public PrintManagerPageViewModel()
         {
             if (App.Current.Properties.ContainsKey("defaultPrinter"))
             {

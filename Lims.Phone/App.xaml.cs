@@ -1,7 +1,7 @@
-﻿using BluetoothPrintSample.Views;
+﻿using Lims.Phone.Views;
 using Xamarin.Forms;
 
-namespace BluetoothPrintSample
+namespace Lims.Phone
 {
     public partial class App : Application
     {
@@ -9,7 +9,8 @@ namespace BluetoothPrintSample
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new PrintManagerPage());
         }
 
         protected override void OnStart()

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Shiny;
 
-namespace BluetoothPrintSample
+namespace Lims.Phone
 {
     public class ShinyAppStartup : Shiny.ShinyStartup
     {

@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lims.Phone.Android", "BluetoothPrintSample.Android\Lims.Phone.Android.csproj", "{FE37B37E-757A-4324-A79F-AE196DBCAFE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lims.Phone.Android", "Lims.Phone.Android\Lims.Phone.Android.csproj", "{FE37B37E-757A-4324-A79F-AE196DBCAFE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lims.Phone.iOS", "BluetoothPrintSample.iOS\Lims.Phone.iOS.csproj", "{186C8467-0C07-4AB2-A2ED-EC28A1BDF64A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lims.Phone.iOS", "Lims.Phone.iOS\Lims.Phone.iOS.csproj", "{186C8467-0C07-4AB2-A2ED-EC28A1BDF64A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lims.Phone", "BluetoothPrintSample\Lims.Phone.csproj", "{9E08E13B-80B9-422C-840B-140878855147}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lims.Phone", "Lims.Phone\Lims.Phone.csproj", "{9E08E13B-80B9-422C-840B-140878855147}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
