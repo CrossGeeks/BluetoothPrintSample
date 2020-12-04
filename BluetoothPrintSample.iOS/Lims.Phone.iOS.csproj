@@ -143,9 +143,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\BluetoothPrintSample\BluetoothPrintSample.csproj">
+    <ProjectReference Include="..\BluetoothPrintSample\Lims.Phone.csproj">
       <Project>{9E08E13B-80B9-422C-840B-140878855147}</Project>
-      <Name>BluetoothPrintSample</Name>
+      <Name>Lims.Phone</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
