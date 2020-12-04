@@ -5,29 +5,29 @@
              Title="打印机设备扫描">
     <ContentPage.Content>
         <StackLayout>
-           <Button Text="扫描设备"
+            <Button Text="扫描设备"
                    Margin="10"
                    BackgroundColor="LightBlue"
                    Command="{Binding GetDeviceListCommand}">
-                 <Button.Triggers>
-                     <DataTrigger TargetType="Button"
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
                                   Binding="{Binding IsScanning}"
                                   Value="True">
-                          <Setter Property="Text" Value="停止扫描"/>
-                          <Setter Property="BackgroundColor" Value="IndianRed"/>
-                     </DataTrigger>
-                 </Button.Triggers>
+                        <Setter Property="Text" Value="停止扫描"/>
+                        <Setter Property="BackgroundColor" Value="IndianRed"/>
+                    </DataTrigger>
+                </Button.Triggers>
             </Button>
 
             <ActivityIndicator IsRunning="{Binding IsScanning}"
                                IsVisible="{Binding IsScanning}"
                                HorizontalOptions="Center"
                                Color="LightBlue"/>
- 
+
             <ListView ItemsSource="{Binding Peripherals}"
                       HasUnevenRows="True"
                       SelectedItem="{Binding SelectedPeripheral, Mode=TwoWay}">
-                 <ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid Margin="10,10">
@@ -42,13 +42,13 @@
                                        Grid.Column="0"
                                        Grid.RowSpan="2"/>
 
-                                 <Label Text="{Binding Name}"
+                                <Label Text="{Binding Name}"
                                         FontAttributes="Bold"
                                         Grid.Column="1"
                                         Grid.Row="0"
                                         TextColor="Black"/>
 
-                                 <Label Text="{Binding Uuid}"
+                                <Label Text="{Binding Uuid}"
                                         Grid.Column="1"
                                         Grid.Row="1"
                                         TextColor="Black"/>

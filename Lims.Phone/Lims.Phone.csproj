@@ -20,12 +20,10 @@
     <PackageReference Include="PropertyChanged.Fody" Version="3.3.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\PrintManagerPage.xaml.cs">
-      <DependentUpon>PrintManagerPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Update="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PrintManagerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
