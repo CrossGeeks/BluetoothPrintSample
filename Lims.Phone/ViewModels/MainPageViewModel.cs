@@ -1,8 +1,5 @@
 ﻿using Lims.Phone.Views;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -32,14 +29,13 @@ namespace Lims.Phone.ViewModels
             {
                 case "PrintManager":
                     page = new PrintManagerPage();
+                    App.Current.MainPage = page;
                     break;
                 default:
                     page = new MainPage();
+                    App.Current.MainPage.Navigation.PushAsync(page, true);
                     break;
             }
-            App.Current.MainPage.Navigation.PushAsync(page, true);
-            //string pagename = String.Format("///{0}",obj.ToString().Trim());
-            //Shell.Current.GoToAsync(pagename);
         }
     }
 }
