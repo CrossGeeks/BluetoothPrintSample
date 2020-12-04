@@ -28,7 +28,7 @@
                         <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
                     <StackLayout>
-                        <Label Text=""
+                        <Label Text="&#xf4ce;"
                                FontSize="40"
                                TextColor="#456268"
                                VerticalOptions="CenterAndExpand" 
@@ -172,17 +172,19 @@
                        Grid.Row="2"
                        Grid.Column="1">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding TapCommand}"
+                                              CommandParameter="PrintManager"/>
                     </Frame.GestureRecognizers>
                     <StackLayout>
-                        <Label Text=""
+                        <Label Text="&#xf02f;"
                                FontSize="40"
                                TextColor="#456268"
                                VerticalOptions="CenterAndExpand" 
                                HorizontalOptions="Center"
                                FontFamily="{StaticResource FontAwesomeSolid}">
                         </Label>
-                        <Label Text="尚未完成"
+                        <Label Text="打印机管理"
                                FontSize="14"
                                TextColor="#456268"
                                VerticalOptions="Center"
@@ -193,29 +195,45 @@
                        Grid.Row="2"
                        Grid.Column="2">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                              Command="{Binding TapCommand}"
+                                              CommandParameter="PrintManager"/>
                     </Frame.GestureRecognizers>
                     <StackLayout>
-                        <Label Text=""
+                        <Label Text="&#xf2f6;"
                                FontSize="40"
                                TextColor="#456268"
                                VerticalOptions="CenterAndExpand" 
                                HorizontalOptions="Center"
                                FontFamily="{StaticResource FontAwesomeSolid}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                              Command="{Binding TapCommand}"
+                                              CommandParameter="PrintManagerPage"/>    
+                            </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="尚未完成"
+                        <Label Text="登录"
                                FontSize="14"
                                TextColor="#456268"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center"></Label>
+                               HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                      Command="{Binding TapCommand}"
+                                                      CommandParameter="PrintManagerPage"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
                 </Frame>
             </Grid>     
             <StackLayout 
                 Spacing="0" 
                 VerticalOptions="EndAndExpand"
-                BackgroundColor="Aqua">
-                <Label Text="我是显示用户信息的地方"/>
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#d0e8f2">
+                <Label Text="我是显示用户信息的地方" 
+                       TextColor="#456268"
+                       FontSize="16"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
