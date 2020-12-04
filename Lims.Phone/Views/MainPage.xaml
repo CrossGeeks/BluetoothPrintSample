@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:styling="clr-namespace:FontIconsInXamarinForms.Styling;assembly=FontIconsInXamarinForms"
+             x:Class="Lims.Phone.Views.MainPage"
+             Title="物流管理系统">
+    <ContentPage.Content>
+        <StackLayout 
+            BackgroundColor="#fcf8ec">
+            <Grid HorizontalOptions="Center"
+                  VerticalOptions="CenterAndExpand"
+                  Margin="30"
+                  ColumnSpacing="0"
+                  RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.33*" />
+                    <ColumnDefinition Width="0.33*" />
+                    <ColumnDefinition Width="0.34*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="0"
+                       Grid.Column="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command=""></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <StackLayout>
+                        <Label Text=""
+                               FontSize="48"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="Center"
+                               FontFamily="{StaticResource FontAwesomeSolid}">
+                        </Label>
+                        <Label Text="运单发货"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"></Label>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="0"
+                       Grid.Column="1">
+                    <Label Text="测试" TextColor="Black"></Label>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="0"
+                       Grid.Column="2">
+                    <Label Text="测试" TextColor="Black"></Label>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="1"
+                       Grid.Column="0">
+                    <Label Text="测试" TextColor="Black"></Label>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="1"
+                       Grid.Column="1">
+                    <Label Text="测试" TextColor="Black"></Label>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="1"
+                       Grid.Column="2">
+                    <Label Text="测试" TextColor="Black"></Label>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="2"
+                       Grid.Column="0">
+                    <Label Text="测试" TextColor="Black"></Label>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="2"
+                       Grid.Column="1">
+                    <Label Text="测试" TextColor="Black"></Label>
+                </Frame>
+                <Frame BorderColor="#d0e8f2"
+                       Grid.Row="2"
+                       Grid.Column="2">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command=""></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <StackLayout>
+                        <Label Text=""
+                               FontSize="48"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="Center"
+                               FontFamily="{StaticResource FontAwesomeSolid}">
+                        </Label>
+                        <Label Text="运单发货"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"></Label>
+                    </StackLayout>
+                </Frame>
+            </Grid>     
+            <StackLayout 
+                Spacing="0" 
+                VerticalOptions="EndAndExpand"
+                BackgroundColor="Aqua">
+                <Label Text="我是显示用户信息的地方"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -5,5 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              mc:Ignorable="d" x:Class="Lims.Phone.App">
     <Application.Resources>
+        <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Font Awesome 5 Brands-Regular-400.otf#Brands"/>
+            <On Platform="iOS" Value="Font Awesome 5 Brands-Regular-400"/>
+        </OnPlatform>
+        <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Solid"/>
+            <On Platform="iOS" Value="Font Awesome 5 Free-Solid-900-Solid"/>
+        </OnPlatform>
+        <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Font Awesome 5 Free-Regular-400.otf#Regular"/>
+            <On Platform="iOS" Value="Font Awesome 5 Free-Regular-400-Regular"/>
+        </OnPlatform>
     </Application.Resources>
 </Application>
