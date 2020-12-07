@@ -14,18 +14,18 @@ namespace Lims.Phone.ViewModels
 {
     public class PrintManagerPageViewModel : INotifyPropertyChanged
     {
-        IDisposable _scanDisposable, _connectedDisposable;
-        IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
+        //IDisposable _scanDisposable, _connectedDisposable;
+        //IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
 
         public bool IsScanning { get; set; }
         public ObservableCollection<IPeripheral> Peripherals { get; set; } = new ObservableCollection<IPeripheral>();
 
         public ICommand GetDeviceListCommand { get; set; }
-        ICommand SetAdapterCommand { get; set; }
-        ICommand CheckPermissionsCommand { get; set; }
+        //ICommand SetAdapterCommand { get; set; }
+        //ICommand CheckPermissionsCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        /*
         IPeripheral _selectedPeripheral;
         public IPeripheral SelectedPeripheral
         {
@@ -41,9 +41,15 @@ namespace Lims.Phone.ViewModels
                     OnSelectedPeripheral(_selectedPeripheral); }
             }
         }
-
+        */
         public PrintManagerPageViewModel()
         {
+            GetDeviceListCommand = new Command(Services.BlueToothPrinter.GetDeviceList);
+            //SetAdapterCommand = new Command(async () => await Services.BlueToothPrinter.SetAdapter());
+            //CheckPermissionsCommand = new Command(async () => await Services.BlueToothPrinter.CheckPermissions());
+
+            //IsScanning = Services.BlueToothPrinter.IsScanning;
+            /*
             if (App.Current.Properties.ContainsKey("defaultPrinter"))
             {
                 string guidName = App.Current.Properties["defaultPrinter"].ToString();
@@ -95,9 +101,9 @@ namespace Lims.Phone.ViewModels
                 SetAdapterCommand = new Command(async () => await SetAdapter());
                 CheckPermissionsCommand = new Command(async () => await CheckPermissions());
                 CheckPermissionsCommand.Execute(null);
-            }
+            }*/
         }
-
+        /*
         async Task CheckPermissions()
         {
             var status = await _centralManager.RequestAccess();
@@ -123,7 +129,8 @@ namespace Lims.Phone.ViewModels
                 GetConnectedDevices();
             }
         }
-
+        */
+        /*
         void GetConnectedDevices()
         {
             _connectedDisposable = _centralManager.GetConnectedPeripherals().Subscribe(scanResult =>
@@ -153,7 +160,8 @@ namespace Lims.Phone.ViewModels
             _scanDisposable?.Dispose();
             IsScanning = _centralManager.IsScanning;
         }
-
+        */
+        /*
         void GetDeviceList()
         {
             if (_centralManager.IsScanning)
@@ -174,5 +182,6 @@ namespace Lims.Phone.ViewModels
             }
             IsScanning = _centralManager.IsScanning;
         }
+        */
     }
 }

@@ -13,5 +13,14 @@ namespace Lims.Phone.Views
 
             BindingContext = new PrintManagerPageViewModel();
         }
+
+        private void Button_Clicked(object sender, System.EventArgs e)
+        {
+            Services.BlueToothPrinter.GetDeviceList();
+
+            PrintManagerPageViewModel vmodel = (PrintManagerPageViewModel)this.BindingContext;
+            vmodel.IsScanning = Services.BlueToothPrinter.IsScanning;
+            vmodel.Peripherals = Services.BlueToothPrinter.Peripherals;
+        }
     }
 }

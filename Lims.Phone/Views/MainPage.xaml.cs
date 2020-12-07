@@ -13,10 +13,5 @@ namespace Lims.Phone.Views
 
             BindingContext = new MainPageViewModel();
         }
-
-        private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
-        {
-            DisplayAlert("消息","","确定");
-        }
     }
 }
