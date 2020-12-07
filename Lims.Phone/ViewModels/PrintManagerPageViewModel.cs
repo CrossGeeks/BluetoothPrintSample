@@ -28,16 +28,15 @@ namespace Lims.Phone.ViewModels
                 if (_selectedPeripheral != null)
                 {
                     Services.BlueToothPrinter.SelectedPeripheral = _selectedPeripheral;
+                    string msg = string.Format("已将名为 {0} 的蓝牙打印机设为默认打印机，请返回！！！", _selectedPeripheral.Name);
+                    App.Current.MainPage.DisplayAlert("提示信息",msg,"确定");
                     Peripherals = null;
-                    IsScanning = Services.BlueToothPrinter.IsScanning;
                 }
             }
         }
 
         public PrintManagerPageViewModel()
         {
-            //GetDeviceListCommand = new Command(Services.BlueToothPrinter.GetDeviceList);
-            //IsScanning = false;
         }
     }
 }

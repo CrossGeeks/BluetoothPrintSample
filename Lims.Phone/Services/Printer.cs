@@ -86,7 +86,6 @@ namespace Lims.Phone.Services
                             SelectedPeripheral = null;
                         });
                     }
-
                 });
             }
         }
