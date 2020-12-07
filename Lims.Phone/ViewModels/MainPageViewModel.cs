@@ -9,8 +9,12 @@ namespace Lims.Phone.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
+        private string UserName { get; set; }
+        private string CompanyName { get; set; }
+        private string PrintName { get; set; }
+
         //命令响应事件
-        ICommand tapCommand;
+        readonly ICommand tapCommand;
 
         //打印机设置需要的命令事件
         public ICommand CheckPermissionsCommand { get; set; }
@@ -24,8 +28,8 @@ namespace Lims.Phone.ViewModels
             //校验是否保存默认打印机
             if(App.Current.Properties.ContainsKey("defaultPrinter"))
             {
-                string guidName = App.Current.Properties["defaultPrinter"].ToString();
-                Services.BlueToothPrinter.SetDefaultPrinter(guidName);
+                PrintName = App.Current.Properties["defaultPrinter"].ToString();
+                Services.BlueToothPrinter.SetDefaultPrinter(PrintName);
             }
             else
             {

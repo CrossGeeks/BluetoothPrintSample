@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lims.Phone.Views.LoginPage">
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical"
+                BackgroundColor="#393939">
+            <Frame HasShadow="True"
+               BackgroundColor="#00AEAE"
+               CornerRadius="10"
+               Padding="0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+                <StackLayout>
+                    <Label Text="Sign-up"
+                       TextColor="#333333"
+                       FontSize="28"
+                       Margin="25, 20, 0, 5"/>
+                    <BoxView HeightRequest="1"
+                         BackgroundColor="#047474" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout x:Name="_formLayout"
+                                 Padding="60, 25, 60, 20"
+                                 Orientation="Vertical"
+                                 Spacing="2">
+                            <Label Text="Username"
+                               Style="{StaticResource FormLabelStyle}" />
+                            <!--Focused="EntryFocused"-->
+                            <Entry Style="{StaticResource FormEntryStyle}"
+                               />
+
+                            <Label Text="Password"
+                               Margin="0, 15, 0, 0"
+                               Style="{StaticResource FormLabelStyle}"/>
+                            <Entry IsPassword="True"
+                               Style="{StaticResource FormEntryStyle}"
+                               />
+
+                            <Label Text="Confirm Password"
+                               Margin="0, 15, 0, 0"
+                               Style="{StaticResource FormLabelStyle}"/>
+                            <Entry IsPassword="True"
+                               Style="{StaticResource FormEntryStyle}"
+                               />
+                            <!--Clicked="ButtonClicked"-->
+                            <Button Text="Sign-Up"
+                                Margin="0, 40, 0, 0"
+                                Style="{StaticResource FormSubmitBtnStyle}"
+                                />
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
