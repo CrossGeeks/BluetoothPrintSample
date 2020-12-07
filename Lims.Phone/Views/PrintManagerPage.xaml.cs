@@ -20,7 +20,10 @@ namespace Lims.Phone.Views
 
             PrintManagerPageViewModel vmodel = (PrintManagerPageViewModel)this.BindingContext;
             vmodel.IsScanning = Services.BlueToothPrinter.IsScanning;
-            vmodel.Peripherals = Services.BlueToothPrinter.Peripherals;
+            if(vmodel.IsScanning)
+            { 
+                vmodel.Peripherals = Services.BlueToothPrinter.Peripherals;
+            }
         }
     }
 }

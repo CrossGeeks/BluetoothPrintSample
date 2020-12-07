@@ -36,7 +36,8 @@ namespace Lims.Phone.ViewModels
 
         public PrintManagerPageViewModel()
         {
-            GetDeviceListCommand = new Command(Services.BlueToothPrinter.GetDeviceList);
+            //GetDeviceListCommand = new Command(Services.BlueToothPrinter.GetDeviceList);
+            //IsScanning = false;
         }
     }
 }

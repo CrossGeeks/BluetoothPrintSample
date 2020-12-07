@@ -10,7 +10,6 @@ namespace Lims.Phone
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
-            //MainPage = new NavigationPage(new PrintManagerPage());
         }
 
         protected override void OnStart()

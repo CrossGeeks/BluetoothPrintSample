@@ -9,14 +9,10 @@ namespace Lims.Phone.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        IDisposable _scanDisposable, _connectedDisposable;
-        IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
-
         //命令响应事件
         ICommand tapCommand;
+
         //打印机设置需要的命令事件
-        public ICommand GetDeviceListCommand { get; set; }
-        public ICommand SetAdapterCommand { get; set; }
         public ICommand CheckPermissionsCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,8 +30,6 @@ namespace Lims.Phone.ViewModels
             else
             {
                 //没有设置默认打印机
-                GetDeviceListCommand = new Command(Services.BlueToothPrinter.GetDeviceList);
-                SetAdapterCommand = new Command(async () => await Services.BlueToothPrinter.SetAdapter());
                 CheckPermissionsCommand = new Command(async () => await Services.BlueToothPrinter.CheckPermissions());
                 CheckPermissionsCommand.Execute(null);
             }
