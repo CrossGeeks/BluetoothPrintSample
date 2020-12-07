@@ -1,6 +1,6 @@
 ﻿using Lims.Phone.Views;
 using Shiny.BluetoothLE;
-using System.Collections.ObjectModel;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,6 +9,9 @@ namespace Lims.Phone.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
+        IDisposable _scanDisposable, _connectedDisposable;
+        IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
+
         //命令响应事件
         ICommand tapCommand;
         //打印机设置需要的命令事件
@@ -24,7 +27,9 @@ namespace Lims.Phone.ViewModels
             
             //校验是否保存默认打印机
             if(App.Current.Properties.ContainsKey("defaultPrinter"))
-            { 
+            {
+                string guidName = App.Current.Properties["defaultPrinter"].ToString();
+                Services.BlueToothPrinter.SetDefaultPrinter(guidName);
             }
             else
             {

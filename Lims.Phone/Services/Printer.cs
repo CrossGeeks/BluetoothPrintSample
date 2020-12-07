@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Lims.Phone.Services
 {
@@ -16,6 +17,79 @@ namespace Lims.Phone.Services
 
         public static bool IsScanning { get; set; }
         public static ObservableCollection<IPeripheral> Peripherals { get; set; } = new ObservableCollection<IPeripheral>();
+
+        static IPeripheral _selectedPeripheral;
+        public static IPeripheral SelectedPeripheral
+        {
+            get
+            {
+                return _selectedPeripheral;
+            }
+            set
+            {
+                _selectedPeripheral = value;
+                if (_selectedPeripheral != null)
+                {
+                    App.Current.Properties.Add("defaultPrinter", _selectedPeripheral.Name);
+                    Application.Current.SavePropertiesAsync();
+                    OnSelectedPeripheral(_selectedPeripheral);
+                }
+            }
+        }
+
+        private static void OnSelectedPeripheral(IPeripheral selectedPeripheral)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                SelectedPeripheral = null;
+            });
+
+            _scanDisposable?.Dispose();
+            IsScanning = _centralManager.IsScanning;
+        }
+
+        public static void SetDefaultPrinter(string printname)
+        {
+            _connectedDisposable = _centralManager.GetConnectedPeripherals().Subscribe(scanResult =>
+            {
+                scanResult.ToList().ForEach(
+                 item =>
+                 {
+                     if (!string.IsNullOrEmpty(item.Name) && item.Name == printname)
+                     {
+                         Peripherals.Add(item);
+                         _centralManager.StopScan();
+                         Device.BeginInvokeOnMainThread(async () =>
+                         {
+                             SelectedPeripheral = null;
+                         });
+
+                         _scanDisposable?.Dispose();
+                         IsScanning = _centralManager.IsScanning;
+                     }
+                 });
+
+                _connectedDisposable?.Dispose();
+            });
+
+            if (_centralManager.IsScanning)
+                _centralManager.StopScan();
+            if (_centralManager.Status == Shiny.AccessState.Available && !_centralManager.IsScanning)
+            {
+                _scanDisposable = _centralManager.ScanForUniquePeripherals().Subscribe(scanResult =>
+                {
+                    if (!string.IsNullOrEmpty(scanResult.Name) && !Peripherals.Contains(scanResult))
+                    {
+                        Peripherals.Add(scanResult);
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            SelectedPeripheral = null;
+                        });
+                    }
+
+                });
+            }
+        }
 
         /// <summary>
         /// 获取蓝牙设备清单
