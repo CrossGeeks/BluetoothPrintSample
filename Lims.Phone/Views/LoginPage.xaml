@@ -35,7 +35,8 @@
                             <Label Text="用户名" 
                                    TextColor="#456268"/>
                         </StackLayout>
-                        <Entry Keyboard="Default"/>
+                        <Entry Keyboard="Default"
+                               Text="{Binding UserName}"/>
                         <StackLayout Orientation="Horizontal"
                                      Margin="0,10,0,0">
                             <Label Text="&#xf084;"
@@ -46,7 +47,8 @@
                                    TextColor="#456268"/>    
                         </StackLayout>
                         <Entry IsPassword="True"
-                               Keyboard="Default"/>
+                               Keyboard="Default"
+                               Text="{Binding Password}"/>
                         <StackLayout Orientation="Horizontal"
                                      Margin="0,10,0,0">
                             <Label Text="&#xf54e;"
@@ -56,7 +58,8 @@
                             <Label Text="公司代码："
                                    TextColor="#456268"/>
                         </StackLayout>
-                        <Entry Keyboard="Numeric"/>
+                        <Entry Keyboard="Numeric"
+                               Text="{Binding CompanyCode}"/>
                         <Button Text="登录"
                                 Margin="0, 20, 0, 0"/>
                     </StackLayout>

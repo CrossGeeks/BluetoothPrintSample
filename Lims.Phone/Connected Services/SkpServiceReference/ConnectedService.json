@@ -1,0 +1,42 @@
+﻿{
+  "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
+  "Version": "15.0.40203.910",
+  "GettingStartedDocument": {
+    "Uri": "https://go.microsoft.com/fwlink/?linkid=858517"
+  },
+  "ExtendedData": {
+    "inputs": [
+      "http://101.201.225.74:35/service.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, SkpServiceReference"
+    ],
+    "references": [
+      "Microsoft.Bcl.AsyncInterfaces, {Microsoft.Bcl.AsyncInterfaces, 1.1.1}",
+      "Microsoft.Extensions.DependencyInjection, {Microsoft.Extensions.DependencyInjection, 3.1.5}",
+      "Microsoft.Extensions.DependencyInjection.Abstractions, {Microsoft.Extensions.DependencyInjection.Abstractions, 3.1.5}",
+      "Newtonsoft.Json, {Newtonsoft.Json, 12.0.3}",
+      "PropertyChanged, {PropertyChanged.Fody, 3.3.1}",
+      "Shiny.BluetoothLE, {Shiny.BluetoothLE, 1.2.0.1755-beta}",
+      "Shiny.BluetoothLE.Common, {Shiny.BluetoothLE.Common, 1.2.0.1755-beta}",
+      "Shiny.Core, {Shiny.Core, 1.2.0.1755}",
+      "System.Numerics.Vectors, {System.Numerics.Vectors, 4.5.0}",
+      "System.Reactive, {System.Reactive, 4.4.1}",
+      "System.Runtime, {System.Runtime, 4.3.0}",
+      "System.Runtime.CompilerServices.Unsafe, {System.Runtime.CompilerServices.Unsafe, 4.5.3}",
+      "System.Runtime.InteropServices.WindowsRuntime, {System.Runtime.InteropServices.WindowsRuntime, 4.3.0}",
+      "System.Threading.Tasks.Extensions, {System.Threading.Tasks.Extensions, 4.5.4}",
+      "Xamarin.Essentials, {Xamarin.Essentials, 1.5.3.2}",
+      "Xamarin.Forms.Core, {Xamarin.Forms, 4.8.0.1687}",
+      "Xamarin.Forms.Platform, {Xamarin.Forms, 4.8.0.1687}",
+      "Xamarin.Forms.Xaml, {Xamarin.Forms, 4.8.0.1687}"
+    ],
+    "sync": true,
+    "targetFramework": "netstandard2.0",
+    "typeReuseMode": "All"
+  }
+}

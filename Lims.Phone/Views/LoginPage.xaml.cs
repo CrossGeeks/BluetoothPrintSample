@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lims.Phone.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace Lims.Phone.Views
         public LoginPage()
         {
             InitializeComponent();
+
+            BindingContext = new LoginViewModel();
         }
     }
 }
