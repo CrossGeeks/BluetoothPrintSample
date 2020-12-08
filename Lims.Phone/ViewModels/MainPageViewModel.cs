@@ -29,9 +29,11 @@ namespace Lims.Phone.ViewModels
         /// </summary>
         public string LoginOrLogoutText { get; set; }
 
-        private string UserName { get; set; }
-        private string CompanyName { get; set; }
-        private string PrintName { get; set; }
+        public string Account { get; set; }
+        public string Company { get; set; }
+        public string Name { get; set; }
+        public string PrintName { get; set; }
+
 
         //命令响应事件
         readonly ICommand tapCommand;
@@ -86,6 +88,13 @@ namespace Lims.Phone.ViewModels
                 CheckPermissionsCommand = new Command(async () => await Services.BlueToothPrinter.CheckPermissions());
                 CheckPermissionsCommand.Execute(null);
             }
+
+            if (App.Current.Properties.ContainsKey("Account"))
+                Account = App.Current.Properties["Account"].ToString().Trim();
+            if (App.Current.Properties.ContainsKey("Company"))
+                Company = App.Current.Properties["Company"].ToString().Trim();
+            if (App.Current.Properties.ContainsKey("Name"))
+                Name = App.Current.Properties["Name"].ToString().Trim();
         }
 
         public ICommand TapCommand
@@ -99,6 +108,17 @@ namespace Lims.Phone.ViewModels
 
             switch(obj.ToString().Trim())
             {
+                case "logOut":
+                    IsLogin = false;
+                    LoginOrLogout = "Login";
+                    FontIcon = FontAwesome.FontAwesomeIcons.SignInAlt;
+                    LoginOrLogoutText = "登录";
+                    Account = string.Empty;
+                    Company = string.Empty;
+                    Name = string.Empty;
+
+                    page = new MainPage();
+                    break;
                 case "Login":
                     page = new LoginPage();
                     break;

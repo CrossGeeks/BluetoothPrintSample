@@ -31,7 +31,6 @@ namespace Lims.Phone.ViewModels
 
         public LoginViewModel()
         {
-
-        }
+        } 
     }
 }

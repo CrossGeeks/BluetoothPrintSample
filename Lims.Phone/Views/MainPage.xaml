@@ -227,11 +227,11 @@
                 <StackLayout Orientation="Horizontal"
                              VerticalOptions="Center"
                              HorizontalOptions="StartAndExpand">
-                    <Label Text="&#xf508;" 
+                    <Label Text="&#xf406;" 
                            TextColor="#456268"
                            FontSize="14"
                            FontFamily="{StaticResource FontAwesomeSolid}"/>
-                    <Label Text="{Binding UserName}" 
+                    <Label Text="{Binding Account}" 
                            TextColor="#456268"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal"
@@ -241,17 +241,17 @@
                        TextColor="#456268"
                        FontSize="14"
                        FontFamily="{StaticResource FontAwesomeSolid}"/>
-                    <Label Text="{Binding CompanyName}" 
+                    <Label Text="{Binding Company}" 
                            TextColor="#456268"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal"
                              VerticalOptions="Center"
                              HorizontalOptions="EndAndExpand">
-                    <Label Text="&#xf02f;" 
+                    <Label Text="&#xf5b7;" 
                        TextColor="#456268"
                        FontSize="14"
                        FontFamily="{StaticResource FontAwesomeSolid}"/>
-                    <Label Text="{Binding PrintName}" 
+                    <Label Text="{Binding Name}" 
                            TextColor="#456268"/>
                 </StackLayout>
             </StackLayout>
