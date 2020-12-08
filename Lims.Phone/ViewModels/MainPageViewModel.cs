@@ -9,6 +9,26 @@ namespace Lims.Phone.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// 是否已登录标志位
+        /// </summary>
+        public bool IsLogin { get; set; }
+
+        /// <summary>
+        /// 登录或登出页面名称
+        /// </summary>
+        public string LoginOrLogout { get; set; }
+
+        /// <summary>
+        /// 登录或登出图标名
+        /// </summary>
+        public string FontIcon { get; set; }
+
+        /// <summary>
+        /// 登录或登出文本
+        /// </summary>
+        public string LoginOrLogoutText { get; set; }
+
         private string UserName { get; set; }
         private string CompanyName { get; set; }
         private string PrintName { get; set; }
@@ -24,9 +44,38 @@ namespace Lims.Phone.ViewModels
         public MainPageViewModel()
         {
             tapCommand = new Command(OnTapped);
-            
+
+            //检查登录标志
+            if (App.Current.Properties.ContainsKey("IsLogin"))
+            {
+                if (Convert.ToBoolean(App.Current.Properties["IsLogin"]))
+                {
+                    //已登录
+                    IsLogin = true;
+                    LoginOrLogout = "Logout";
+                    FontIcon = FontAwesome.FontAwesomeIcons.SignOutAlt;
+                    LoginOrLogoutText = "退出登录";
+                }
+                else
+                {
+                    //未登录
+                    IsLogin = false;
+                    LoginOrLogout = "Login";
+                    FontIcon = FontAwesome.FontAwesomeIcons.SignInAlt;
+                    LoginOrLogoutText = "登录";
+                }
+            }
+            else
+            {
+                //没有登录标志
+                IsLogin = false;
+                LoginOrLogout = "Login";
+                FontIcon = FontAwesome.FontAwesomeIcons.SignInAlt;
+                LoginOrLogoutText = "登录";
+            }
+
             //校验是否保存默认打印机
-            if(App.Current.Properties.ContainsKey("defaultPrinter"))
+            if (App.Current.Properties.ContainsKey("defaultPrinter"))
             {
                 PrintName = App.Current.Properties["defaultPrinter"].ToString();
                 Services.BlueToothPrinter.SetDefaultPrinter(PrintName);
@@ -50,6 +99,9 @@ namespace Lims.Phone.ViewModels
 
             switch(obj.ToString().Trim())
             {
+                case "Login":
+                    page = new LoginPage();
+                    break;
                 case "PrintManager":
                     page = new PrintManagerPage();
                     break;

@@ -1,59 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Lims.Phone.Views.LoginPage">
+             x:Class="Lims.Phone.Views.LoginPage"
+             Title="登录"
+             BackgroundColor="#fcf8ec">
     <ContentPage.Content>
-        <ScrollView Orientation="Vertical"
-                BackgroundColor="#393939">
-            <Frame HasShadow="True"
-               BackgroundColor="#00AEAE"
+        <Frame HasShadow="True"
+               BackgroundColor="#d0e8f2"
                CornerRadius="10"
                Padding="0"
                HorizontalOptions="Center"
-               VerticalOptions="Center">
-                <StackLayout>
-                    <Label Text="Sign-up"
-                       TextColor="#333333"
+               VerticalOptions="Start"
+               Margin="10">
+            <StackLayout Margin="10">
+                <Label Text="系统登录"
+                       TextColor="#456268"
                        FontSize="28"
-                       Margin="25, 20, 0, 5"/>
-                    <BoxView HeightRequest="1"
-                         BackgroundColor="#047474" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout x:Name="_formLayout"
-                                 Padding="60, 25, 60, 20"
+                       Margin="20, 10, 0, 5"/>
+                <BoxView HeightRequest="1"
+                         BackgroundColor="#79a3b1" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout x:Name="_formLayout"
+                                 Padding="20"
                                  Orientation="Vertical"
                                  Spacing="2">
-                            <Label Text="Username"
-                               Style="{StaticResource FormLabelStyle}" />
-                            <!--Focused="EntryFocused"-->
-                            <Entry Style="{StaticResource FormEntryStyle}"
-                               />
-
-                            <Label Text="Password"
-                               Margin="0, 15, 0, 0"
-                               Style="{StaticResource FormLabelStyle}"/>
-                            <Entry IsPassword="True"
-                               Style="{StaticResource FormEntryStyle}"
-                               />
-
-                            <Label Text="Confirm Password"
-                               Margin="0, 15, 0, 0"
-                               Style="{StaticResource FormLabelStyle}"/>
-                            <Entry IsPassword="True"
-                               Style="{StaticResource FormEntryStyle}"
-                               />
-                            <!--Clicked="ButtonClicked"-->
-                            <Button Text="Sign-Up"
-                                Margin="0, 40, 0, 0"
-                                Style="{StaticResource FormSubmitBtnStyle}"
-                                />
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="&#xf508;"
+                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                   FontSize="14"
+                                   TextColor="#456268"/>
+                            <Label Text="用户名" 
+                                   TextColor="#456268"/>
                         </StackLayout>
-                    </Grid>
-                </StackLayout>
-            </Frame>
-        </ScrollView>
+                        <Entry Keyboard="Default"/>
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="0,10,0,0">
+                            <Label Text="&#xf084;"
+                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                   FontSize="14"
+                                   TextColor="#456268"/>
+                            <Label Text="密码"
+                                   TextColor="#456268"/>    
+                        </StackLayout>
+                        <Entry IsPassword="True"
+                               Keyboard="Default"/>
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="0,10,0,0">
+                            <Label Text="&#xf54e;"
+                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                   FontSize="14"
+                                   TextColor="#456268"/>
+                            <Label Text="公司代码："
+                                   TextColor="#456268"/>
+                        </StackLayout>
+                        <Entry Keyboard="Numeric"/>
+                        <Button Text="登录"
+                                Margin="0, 20, 0, 0"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

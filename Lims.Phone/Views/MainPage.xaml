@@ -197,17 +197,17 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1" 
                                               Command="{Binding TapCommand}"
-                                              CommandParameter="PrintManager"/>
+                                              CommandParameter="{Binding LoginOrLogout}"/>
                     </Frame.GestureRecognizers>
                     <StackLayout>
-                        <Label Text="&#xf2f6;"
+                        <Label Text="{Binding FontIcon}"
                                FontSize="40"
                                TextColor="#456268"
                                VerticalOptions="CenterAndExpand" 
                                HorizontalOptions="Center"
                                FontFamily="{StaticResource FontAwesomeSolid}">
                         </Label>
-                        <Label Text="登录"
+                        <Label Text="{Binding LoginOrLogoutText}"
                                FontSize="14"
                                TextColor="#456268"
                                VerticalOptions="Center"
@@ -215,7 +215,8 @@
                         </Label>
                     </StackLayout>
                 </Frame>
-            </Grid>     
+            </Grid>
+            <!--底部标志信息栏-->
             <StackLayout 
                 Spacing="0" 
                 VerticalOptions="EndAndExpand"
