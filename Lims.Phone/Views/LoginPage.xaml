@@ -23,8 +23,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <StackLayout x:Name="_formLayout"
-                                 Padding="20"
+                    <StackLayout Padding="20"
                                  Orientation="Vertical"
                                  Spacing="2">
                         <StackLayout Orientation="Horizontal">
@@ -67,6 +66,12 @@
                                 FontSize="16"
                                 Margin="0, 20, 0, 0"
                                 Clicked="Button_Clicked"/>
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           IsVisible="True"
+                                           IsEnabled="True"
+                                           HorizontalOptions="Center"
+                                           Color="Gold"
+                                           x:Name="Activity"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>
