@@ -104,7 +104,7 @@ namespace Lims.Phone.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public Command LoginCommand { get; }
+        
         public void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(name));

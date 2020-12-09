@@ -71,6 +71,7 @@
                                            IsEnabled="True"
                                            HorizontalOptions="Center"
                                            Color="Gold"
+                                           HeightRequest="50"
                                            x:Name="Activity"/>
                     </StackLayout>
                 </Grid>
