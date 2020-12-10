@@ -56,12 +56,68 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 登录或登出文本
         /// </summary>
-        public string LoginOrLogoutText { get; set; }
+        public string LoginOrLogoutText 
+        {
+            get { return _loginorlogouttext; }
+            set 
+            {
+                _loginorlogouttext = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string Account { get; set; }
-        public string Company { get; set; }
-        public string Name { get; set; }
-        public string PrintName { get; set; }
+        private string _account;
+        /// <summary>
+        /// 账号
+        /// </summary>
+        public string Account 
+        {
+            get { return _account; }
+            set 
+            {
+                _account = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _company;
+        /// <summary>
+        /// 公司名称
+        /// </summary>
+        public string Company 
+        {
+            get { return _company; }
+            set 
+            {
+                _company = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        private string _name;
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name 
+        {
+            get { return _name; }
+            set 
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _date;
+        public string Date
+        {
+            get { return _date; }
+            set
+            {
+                _date = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _printname;
         /// <summary>
@@ -92,57 +148,7 @@ namespace Lims.Phone.ViewModels
 
         public MainPageViewModel()
         {
-            tapCommand = new Command(OnTapped);
-
-            var login = this.IsLogin;
-            //检查登录标志
-            if (App.Current.Properties.ContainsKey("IsLogin"))
-            {
-                if (Convert.ToBoolean(App.Current.Properties["IsLogin"]))
-                {
-                    //已登录
-                    IsLogin = true;
-                    LoginOrLogout = "Logout";
-                    FontIcon = FontAwesome.FontAwesomeIcons.SignOutAlt;
-                    LoginOrLogoutText = "退出";
-                }
-                else
-                {
-                    //未登录
-                    IsLogin = false;
-                    LoginOrLogout = "Login";
-                    FontIcon = FontAwesome.FontAwesomeIcons.SignInAlt;
-                    LoginOrLogoutText = "登录";
-                }
-            }
-            else
-            {
-                //没有登录标志
-                IsLogin = false;
-                LoginOrLogout = "Login";
-                FontIcon = FontAwesome.FontAwesomeIcons.SignInAlt;
-                LoginOrLogoutText = "登录";
-            }
-
-            //校验是否保存默认打印机
-            if (App.Current.Properties.ContainsKey("defaultPrinter"))
-            {
-                PrintName = App.Current.Properties["defaultPrinter"].ToString();
-                Services.BlueToothPrinter.SetDefaultPrinter(PrintName);
-            }
-            else
-            {
-                //没有设置默认打印机
-                CheckPermissionsCommand = new Command(async () => await Services.BlueToothPrinter.CheckPermissions());
-                CheckPermissionsCommand.Execute(null);
-            }
-
-            if (App.Current.Properties.ContainsKey("Account"))
-                Account = App.Current.Properties["Account"].ToString().Trim();
-            if (App.Current.Properties.ContainsKey("Company"))
-                Company = App.Current.Properties["Company"].ToString().Trim();
-            if (App.Current.Properties.ContainsKey("Name"))
-                Name = App.Current.Properties["Name"].ToString().Trim();
+            tapCommand = new Command(OnTapped);            
         }
 
         public ICommand TapCommand
@@ -179,11 +185,6 @@ namespace Lims.Phone.ViewModels
             }
 
             App.Current.MainPage.Navigation.PushAsync(page, true);
-        }
-
-        private void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
