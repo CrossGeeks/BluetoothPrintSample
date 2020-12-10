@@ -1,6 +1,5 @@
-﻿using Lims.Phone.Views;
-using Shiny.BluetoothLE;
-using System;
+﻿using Lims.Phone.Services;
+using Lims.Phone.Views;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -160,31 +159,34 @@ namespace Lims.Phone.ViewModels
         {
             Page page;
 
-            switch(obj.ToString().Trim())
+            switch(obj.ToString().ToUpper().Trim())
             {
-                case "logOut":
+                case "LOGOUT":
                     IsLogin = false;
-                    LoginOrLogout = "Login";
-                    FontIcon = FontAwesome.FontAwesomeIcons.SignInAlt;
-                    LoginOrLogoutText = "登录";
                     Account = string.Empty;
                     Company = string.Empty;
                     Name = string.Empty;
+                    Date = string.Empty;
+                    LoginOrLogout = "Login";
+                    FontIcon = FontAwesome.FontAwesomeIcons.SignInAlt;
+                    LoginOrLogoutText = "登录";
 
-                    page = new MainPage();
+                    SaveToPropertitys.SaveTo(IsLogin, Account, Company, Name, Date);
+
+                    Application.Current.MainPage.Navigation.PopToRootAsync(true);
                     break;
-                case "Login":
+                case "LOGIN":
                     page = new LoginPage();
+                    App.Current.MainPage.Navigation.PushAsync(page, true);
                     break;
-                case "PrintManager":
+                case "PRINTMANAGER":
                     page = new PrintManagerPage();
+                    App.Current.MainPage.Navigation.PushAsync(page, true);
                     break;
                 default:
-                    page = new MainPage();
+                    App.Current.MainPage.Navigation.PopToRootAsync(true);
                     break;
             }
-
-            App.Current.MainPage.Navigation.PushAsync(page, true);
         }
     }
 }

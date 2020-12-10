@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Lims.Phone.Models;
+using Lims.Phone.Services;
 using Lims.Phone.Services.Identity;
 using Lims.Phone.ViewModels;
 using System;
@@ -38,7 +39,10 @@ namespace Lims.Phone.Views
             if (accountInfo.ResulitInfo.IsOK)
             {
                 //远程校验成功，将各种参数存入内存中
+                SaveToPropertitys.SaveTo(accountInfo.ResulitInfo.IsOK, accountInfo.Account, accountInfo.Company, accountInfo.Name,accountInfo.Date);
+                /*
                 //登录成功标志
+                
                 if (Application.Current.Properties.ContainsKey("IsLogin"))
                     Application.Current.Properties["IsLogin"] = accountInfo.ResulitInfo.IsOK;
                 else
@@ -64,6 +68,7 @@ namespace Lims.Phone.Views
 
                 //传递参数保存
                 Application.Current.SavePropertiesAsync();
+                */
                 //返回到主页面
                 Application.Current.MainPage.Navigation.PopAsync(true);
             }
