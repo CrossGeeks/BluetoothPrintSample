@@ -15,7 +15,7 @@ namespace Lims.Phone.Views
         }
         protected override void OnAppearing()
         {
-            DisplayAlert("提示信息", "我是主页面马上要出现了", "确定");
+            //DisplayAlert("提示信息", "我是主页面马上要出现了", "确定");
             base.OnAppearing();
         }
     }

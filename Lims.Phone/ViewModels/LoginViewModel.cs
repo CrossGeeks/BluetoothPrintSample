@@ -17,7 +17,6 @@ namespace Lims.Phone.ViewModels
             {
                 _islogin = value;
                 OnPropertyChanged();
-                //OnPropertyChanged(nameof(Message));
             }
         }
 
@@ -32,7 +31,6 @@ namespace Lims.Phone.ViewModels
             {
                 _username = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
 
@@ -72,23 +70,9 @@ namespace Lims.Phone.ViewModels
             {
                 _isautologin = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
         
-        /// <summary>
-        /// 信息
-        /// </summary>
-        public string Message
-        {
-            get 
-            {
-                var msg = IsAutoLogin ? "下次将会自动登录" : "下次不会自动登录";
-
-                return $"欢迎{UserName}.{msg}";
-            }
-        }
-
         private bool _isbusy;
         /// <summary>
         /// 是否处于忙碌状态
