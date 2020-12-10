@@ -66,11 +66,15 @@
                                 FontSize="16"
                                 Margin="0, 20, 0, 0"
                                 Clicked="Button_Clicked"/>
-                        <ActivityIndicator IsRunning="{Binding IsBusy}"
-                                           Color="Gold"
-                                           VerticalOptions="CenterAndExpand"
-                                           HorizontalOptions="Fill"
-                                           x:Name="Activitys"/>
+                        <StackLayout>
+                            <ActivityIndicator VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               IsEnabled="True"
+                                               IsVisible="True"
+                                               IsRunning="{Binding IsBusy}"
+                                               x:Name="Activitys"
+                                               Color="#79a3b1"/>
+                        </StackLayout>
                     </StackLayout>
                 </Grid>
             </StackLayout>
