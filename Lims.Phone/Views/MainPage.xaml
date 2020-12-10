@@ -221,38 +221,62 @@
                 Spacing="0" 
                 VerticalOptions="EndAndExpand"
                 HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal"
+                Orientation="Vertical"
                 BackgroundColor="#d0e8f2"
                 Padding="10">
-                <StackLayout Orientation="Horizontal"
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
                              VerticalOptions="Center"
                              HorizontalOptions="StartAndExpand">
-                    <Label Text="&#xf406;" 
+                        <Label Text="&#xf406;" 
                            TextColor="#456268"
                            FontSize="14"
                            FontFamily="{StaticResource FontAwesomeSolid}"/>
-                    <Label Text="{Binding Account}" 
+                        <Label Text="{Binding Account}" 
                            TextColor="#456268"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal"
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
                              VerticalOptions="Center"
                              HorizontalOptions="CenterAndExpand">
-                    <Label Text="&#xf1ad;" 
+                        <Label Text="&#xf1ad;" 
                        TextColor="#456268"
                        FontSize="14"
                        FontFamily="{StaticResource FontAwesomeSolid}"/>
-                    <Label Text="{Binding Company}" 
+                        <Label Text="{Binding Company}" 
                            TextColor="#456268"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal"
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
                              VerticalOptions="Center"
                              HorizontalOptions="EndAndExpand">
-                    <Label Text="&#xf5b7;" 
+                        <Label Text="&#xf5b7;" 
                        TextColor="#456268"
                        FontSize="14"
                        FontFamily="{StaticResource FontAwesomeSolid}"/>
-                    <Label Text="{Binding Name}" 
+                        <Label Text="{Binding Name}" 
                            TextColor="#456268"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="StartAndExpand">
+                        <Label Text="&#xf073;" 
+                           TextColor="#456268"
+                           FontSize="14"
+                           FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="{Binding Date}" 
+                           TextColor="#456268"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="EndAndExpand">
+                        <Label Text="&#xf02f;" 
+                       TextColor="#456268"
+                       FontSize="14"
+                       FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="{Binding PrintName}" 
+                           TextColor="#456268"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
