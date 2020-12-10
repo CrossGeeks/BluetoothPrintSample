@@ -197,43 +197,87 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1" 
                                               Command="{Binding TapCommand}"
-                                              CommandParameter="PrintManager"/>
+                                              CommandParameter="{Binding LoginOrLogout}"/>
                     </Frame.GestureRecognizers>
                     <StackLayout>
-                        <Label Text="&#xf2f6;"
+                        <Label Text="{Binding FontIcon}"
                                FontSize="40"
                                TextColor="#456268"
                                VerticalOptions="CenterAndExpand" 
                                HorizontalOptions="Center"
                                FontFamily="{StaticResource FontAwesomeSolid}">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                              Command="{Binding TapCommand}"
-                                              CommandParameter="PrintManagerPage"/>    
-                            </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="登录"
+                        <Label Text="{Binding LoginOrLogoutText}"
                                FontSize="14"
                                TextColor="#456268"
                                VerticalOptions="Center"
                                HorizontalOptions="Center">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" 
-                                                      Command="{Binding TapCommand}"
-                                                      CommandParameter="PrintManagerPage"/>
-                            </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
                 </Frame>
-            </Grid>     
+            </Grid>
+            <!--底部标志信息栏-->
             <StackLayout 
                 Spacing="0" 
                 VerticalOptions="EndAndExpand"
                 HorizontalOptions="FillAndExpand"
-                BackgroundColor="#d0e8f2">
-                <Label Text="我是显示用户信息的地方" 
+                Orientation="Vertical"
+                BackgroundColor="#d0e8f2"
+                Padding="10">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="StartAndExpand">
+                        <Label Text="&#xf406;" 
+                           TextColor="#456268"
+                           FontSize="14"
+                           FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="{Binding Account}" 
+                           TextColor="#456268"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="CenterAndExpand">
+                        <Label Text="&#xf1ad;" 
                        TextColor="#456268"
-                       FontSize="16"/>
+                       FontSize="14"
+                       FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="{Binding Company}" 
+                           TextColor="#456268"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="EndAndExpand">
+                        <Label Text="&#xf5b7;" 
+                       TextColor="#456268"
+                       FontSize="14"
+                       FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="{Binding Name}" 
+                           TextColor="#456268"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="StartAndExpand">
+                        <Label Text="&#xf073;" 
+                           TextColor="#456268"
+                           FontSize="14"
+                           FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="{Binding Date}" 
+                           TextColor="#456268"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="EndAndExpand">
+                        <Label Text="&#xf02f;" 
+                       TextColor="#456268"
+                       FontSize="14"
+                       FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="{Binding PrintName}" 
+                           TextColor="#456268"/>
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
