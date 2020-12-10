@@ -2,6 +2,7 @@
 using Shiny.BluetoothLE;
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -9,30 +10,131 @@ namespace Lims.Phone.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
+        private bool _islogin;
         /// <summary>
         /// 是否已登录标志位
         /// </summary>
-        public bool IsLogin { get; set; }
+        public bool IsLogin 
+        {
+            get { return _islogin; }
+            set 
+            {
+                _islogin = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _loginorlogout;
         /// <summary>
         /// 登录或登出页面名称
         /// </summary>
-        public string LoginOrLogout { get; set; }
+        public string LoginOrLogout 
+        {
+            get { return _loginorlogout; }
+            set 
+            {
+                _loginorlogout = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _fonticon;
         /// <summary>
         /// 登录或登出图标名
         /// </summary>
-        public string FontIcon { get; set; }
+        public string FontIcon 
+        {
+            get { return _fonticon; }
+            set 
+            {
+                _fonticon = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _loginorlogouttext;
         /// <summary>
         /// 登录或登出文本
         /// </summary>
-        public string LoginOrLogoutText { get; set; }
+        public string LoginOrLogoutText 
+        {
+            get { return _loginorlogouttext; }
+            set 
+            {
+                _loginorlogouttext = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string Account { get; set; }
-        public string Company { get; set; }
-        public string Name { get; set; }
-        public string PrintName { get; set; }
+        private string _account;
+        /// <summary>
+        /// 账号
+        /// </summary>
+        public string Account 
+        {
+            get { return _account; }
+            set 
+            {
+                _account = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _company;
+        /// <summary>
+        /// 公司名称
+        /// </summary>
+        public string Company 
+        {
+            get { return _company; }
+            set 
+            {
+                _company = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _name;
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name 
+        {
+            get { return _name; }
+            set 
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _date;
+        /// <summary>
+        /// 日期
+        /// </summary>
+        public string Date 
+        {
+            get { return _date; }
+            set 
+            {
+                _date = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _printname;
+        /// <summary>
+        /// 打印机名称
+        /// </summary>
+        public string PrintName 
+        {
+            get { return _printname; }
+            set 
+            {
+                _printname = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         //命令响应事件
@@ -43,10 +145,16 @@ namespace Lims.Phone.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         public MainPageViewModel()
         {
             tapCommand = new Command(OnTapped);
 
+            var login = this.IsLogin;
             //检查登录标志
             if (App.Current.Properties.ContainsKey("IsLogin"))
             {

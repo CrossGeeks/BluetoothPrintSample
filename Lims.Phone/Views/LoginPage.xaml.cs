@@ -79,6 +79,11 @@ namespace Lims.Phone.Views
                 App.Current.Properties["Name"] = accountInfo.Name;
             else
                 App.Current.Properties.Add("Name", accountInfo.Name);
+            //日期
+            if (App.Current.Properties.ContainsKey("Date"))
+                App.Current.Properties["Date"] = accountInfo.Date;
+            else
+                App.Current.Properties.Add("Name", accountInfo.Name);
 
             //传递参数保存
             App.Current.SavePropertiesAsync();
