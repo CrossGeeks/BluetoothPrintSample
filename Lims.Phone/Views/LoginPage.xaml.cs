@@ -27,85 +27,49 @@ namespace Lims.Phone.Views
             LoginViewModel loginViewModel = (LoginViewModel)BindingContext;
             ValidationResult validationResult = validationRules.Validate(loginViewModel);
             if (validationResult.IsValid)
-            {
-                AccountInfo accountInfo = Identity.Authenticate(loginViewModel);
-                if (accountInfo.ResulitInfo.IsOK)
-                {
-                    //远程校验成功，将各种参数存入内存中
-                    //登录成功标志
-                    if (App.Current.Properties.ContainsKey("IsLogin"))
-                    {
-                        App.Current.Properties["IsLogin"] = accountInfo.ResulitInfo.IsOK;
-                    }
-                    else
-                    {
-                        App.Current.Properties.Add("IsLogin",accountInfo.ResulitInfo.IsOK);
-                    }
-                    //账号信息
-                    if (App.Current.Properties.ContainsKey("Account"))
-                    {
-                        App.Current.Properties["Account"] = accountInfo.Account;
-                    }
-                    else
-                    {
-                        App.Current.Properties.Add("Account", accountInfo.Account);
-                    }
-                    //公司名称
-                    if (App.Current.Properties.ContainsKey("Company"))
-                    {
-                        App.Current.Properties["Company"] = accountInfo.Company;
-                    }
-                    else
-                    {
-                        App.Current.Properties.Add("Company", accountInfo.Company);
-                    }
-                    //Name
-                    if (App.Current.Properties.ContainsKey("Name"))
-                    {
-                        App.Current.Properties["Name"] = accountInfo.Name;
-                    }
-                    else
-                    {
-                        App.Current.Properties.Add("Name", accountInfo.Name);
-                    }
+                WebServiceValidator(loginViewModel);
+            else
+                DisplayError(validationResult.Errors);
+        }
 
-                    //传递参数保存
-                    App.Current.SavePropertiesAsync();
-                    //返回到主页面
-                    App.Current.MainPage.Navigation.PopAsync(true);
-                }
+        private void WebServiceValidator(LoginViewModel loginViewModel)
+        {
+            AccountInfo accountInfo = Identity.Authenticate(loginViewModel);
+            if (accountInfo.ResulitInfo.IsOK)
+            {
+                //远程校验成功，将各种参数存入内存中
+                //登录成功标志
+                if (Application.Current.Properties.ContainsKey("IsLogin"))
+                    Application.Current.Properties["IsLogin"] = accountInfo.ResulitInfo.IsOK;
                 else
-                {
-                    //远程Webservice数据校验失败，显示错误信息
-                    DisplayAlert("提示信息",accountInfo.ResulitInfo.Message,"确定");
-                }
+                    Application.Current.Properties.Add("IsLogin", accountInfo.ResulitInfo.IsOK);
+
+                //账号信息
+                if (Application.Current.Properties.ContainsKey("Account"))
+                    Application.Current.Properties["Account"] = accountInfo.Account;
+                else
+                    Application.Current.Properties.Add("Account", accountInfo.Account);
+
+                //公司名称
+                if (Application.Current.Properties.ContainsKey("Company"))
+                    Application.Current.Properties["Company"] = accountInfo.Company;
+                else
+                    Application.Current.Properties.Add("Company", accountInfo.Company);
+
+                //Name
+                if (Application.Current.Properties.ContainsKey("Name"))
+                    Application.Current.Properties["Name"] = accountInfo.Name;
+                else
+                    Application.Current.Properties.Add("Name", accountInfo.Name);
+
+                //传递参数保存
+                Application.Current.SavePropertiesAsync();
+                //返回到主页面
+                Application.Current.MainPage.Navigation.PopAsync(true);
             }
             else
-            {
-                DisplayError(validationResult.Errors);
-                //界面校验失败，显示错误信息
-                //定义临时参数
-                //string message = string.Empty;
-                //string controllname = string.Empty;
-                //int i = 0;
-                //获取校验失败数据字段列表，取各个字段
-                //foreach (var error in validationResult.Errors)
-                //{
-                    //获取错误信息
-                    //message = error.ErrorMessage;
-                    //获取字段属性，视图model和界面Entry同名
-                    //controllname = error.PropertyName;
-                    //取列表中第一个字段返回
-                    //i++;
-                    //if (i > 1)
-                        //break;
-                //}
-                //显示错误信息
-                //DisplayAlert("提示信息", message, "确定");
-                //将输入光标置于错误字段上
-                //Entry entry = (Entry)FindByName(controllname);
-                //entry.Focus();
-            }
+                //远程Webservice数据校验失败，显示错误信息
+                DisplayAlert("提示信息", accountInfo.ResulitInfo.Message, "确定");
         }
 
         private void DisplayError(IList<ValidationFailure> errors)
