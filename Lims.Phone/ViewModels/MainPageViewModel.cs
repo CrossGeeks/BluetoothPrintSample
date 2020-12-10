@@ -21,7 +21,7 @@ namespace Lims.Phone.ViewModels
             {
                 _islogin = value;
                 OnPropertyChanged();
-            } 
+            }
         }
 
         private string _loginorlogout;
@@ -56,57 +56,12 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 登录或登出文本
         /// </summary>
-        public string LoginOrLogoutText 
-        {
-            get { return _loginorlogouttext; }
-            set 
-            {
-                _loginorlogouttext = value;
-                OnPropertyChanged();
-            }
-        }
+        public string LoginOrLogoutText { get; set; }
 
-        private string _account;
-        /// <summary>
-        /// 账号
-        /// </summary>
-        public string Account 
-        {
-            get { return _account; }
-            set 
-            {
-                _account = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _company;
-        /// <summary>
-        /// 公司名称
-        /// </summary>
-        public string Company 
-        {
-            get { return _company; }
-            set 
-            {
-                _company = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _name;
-        /// <summary>
-        /// 姓名
-        /// </summary>
-        public string Name 
-        {
-            get { return _name; }
-            set 
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Account { get; set; }
+        public string Company { get; set; }
+        public string Name { get; set; }
+        public string PrintName { get; set; }
 
         private string _printname;
         /// <summary>
@@ -130,10 +85,16 @@ namespace Lims.Phone.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         public MainPageViewModel()
         {
             tapCommand = new Command(OnTapped);
 
+            var login = this.IsLogin;
             //检查登录标志
             if (App.Current.Properties.ContainsKey("IsLogin"))
             {
