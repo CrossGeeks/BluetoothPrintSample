@@ -25,7 +25,9 @@
                        Grid.Row="0"
                        Grid.Column="0">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding TapCommand}"
+                                              CommandParameter="Shipping"/>
                     </Frame.GestureRecognizers>
                     <StackLayout>
                         <Label Text="&#xf4ce;"

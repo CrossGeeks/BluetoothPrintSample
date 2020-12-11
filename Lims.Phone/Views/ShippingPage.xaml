@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lims.Phone.Views.ShippingPage"
+             Title="发货运单-">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#fcf8ec"
+                     Orientation="Vertical">
+            <!--单据主体-->
+            <ScrollView VerticalOptions="FillAndExpand">
+                <Grid Margin="10">
+                    <!--列宽定义为50%-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <!--行定义，高度Auto-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <!--Label定义-->
+                    <Label Text="收货人电话" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="0" 
+                           Grid.Column="0" />
+                    <Label Text="收货人姓名" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="0" 
+                           Grid.Column="1" />
+                    <Label Text="收货人地址" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="2" 
+                           Grid.Column="0" 
+                           Grid.ColumnSpan="2" />
+                    <Label Text="发货人电话" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="4" 
+                           Grid.Column="0" />
+                    <Label Text="发货人姓名" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="4" 
+                           Grid.Column="1" />
+                    <Label Text="提货网点" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="6" 
+                           Grid.Column="0" />
+                    <Label Text="目的地" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="6" 
+                           Grid.Column="1" />
+                    <Label Text="货物名称" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="8" 
+                           Grid.Column="0" />
+                    <Label Text="货物件数" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="8" 
+                           Grid.Column="1" />
+                    <Label Text="运费" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="10" 
+                           Grid.Column="0" />
+                    <Label Text="保价金额" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="10" 
+                           Grid.Column="1" />
+                    <Label Text="代收金额" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="12" 
+                           Grid.Column="0" />
+                    <Label Text="现返金额" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="12" 
+                           Grid.Column="1" />
+                    <Label Text="欠返金额" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="14" 
+                           Grid.Column="0" />
+                    <Label Text="送货费" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="14" 
+                           Grid.Column="1" />
+                    <Label Text="收费方式" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="16" 
+                           Grid.Column="0" />
+                    <Label Text="中转方式" 
+                           HorizontalOptions="Start" 
+                           TextColor="#456268" 
+                           Grid.Row="16" 
+                           Grid.Column="1"/>
+                    <!--
+                    <Label Text="工本费" HorizontalOptions="Start" TextColor="#456268" Grid.Row="14" Grid.Column="1" />
+                    -->
+                    <!--输入框定义-->
+                    <Entry Text="{Binding ConsigneePhone}"
+                           Keyboard="Telephone"
+                           Placeholder="请输入收货人电话"
+                           x:Name="ConsigneePhone"
+                           Margin="0,5,0,5"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                    <Entry Text="{Binding ConsigneeName}"
+                           Keyboard="Text"
+                           Placeholder="请输入收货人姓名"
+                           x:Name="ConsigneeName"
+                           Margin="0,5,0,5"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+                    <Entry Text="{Binding ConsigneeAddress}"
+                           Keyboard="Text"
+                           Placeholder="请输入收货人地址"
+                           x:Name="ConsigneeAddress"
+                           Margin="0,5,0,5"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2" />
+                    <Entry Text="{Binding ShipperPhone}"
+                           Keyboard="Telephone"
+                           Placeholder="请输入发货人电话"
+                           x:Name="ShipperPhone"
+                           Margin="0,5,0,5"
+                           Grid.Row="5"
+                           Grid.Column="0" />
+                    <Entry Text="{Binding ShipperName}"
+                           Keyboard="Text"
+                           Placeholder="请输入发货人姓名"
+                           x:Name="ShipperName"
+                           Margin="0,5,0,5"
+                           Grid.Row="5"
+                           Grid.Column="1" />
+                    <Entry Text="{Binding PickupLocations}"
+                           Keyboard="Text"
+                           Placeholder="请输入提货网点"
+                           x:Name="PickupLocations"
+                           Margin="0,5,0,5"
+                           Grid.Row="7"
+                           Grid.Column="0" />
+                    <Entry Text="{Binding Destination}"
+                           Keyboard="Text"
+                           Placeholder="请输入目的地"
+                           x:Name="Destination"
+                           Margin="0,5,0,5"
+                           Grid.Row="7"
+                           Grid.Column="1" />
+                    <Entry Text="{Binding CargoName}"
+                           Keyboard="Text"
+                           Placeholder="请输入货物名称"
+                           x:Name="CargoName"
+                           Margin="0,5,0,5"
+                           Grid.Row="9"
+                           Grid.Column="0" />
+                    <Entry Text="{Binding NumberOfPieces}"
+                           Keyboard="Numeric"
+                           Placeholder="请输入货物件数"
+                           x:Name="NumberOfPieces"
+                           Margin="0,5,0,5"
+                           Grid.Row="9"
+                           Grid.Column="1" />
+                    <Entry Text="{Binding FreightRates}"
+                           Keyboard="Numeric"
+                           Placeholder="请输入运费金额"
+                           x:Name="FreightRates"
+                           Margin="0,5,0,5"
+                           Grid.Row="11"
+                           Grid.Column="0" />
+                    <Entry Text="{Binding GuaranteedAmount}"
+                           Keyboard="Numeric"
+                           Placeholder="请输入保价金额"
+                           x:Name="GuaranteedAmount"
+                           Margin="0,5,0,5"
+                           Grid.Row="11"
+                           Grid.Column="1" />
+                    <Entry Text="{Binding CollectionAmount}"
+                           Keyboard="Numeric"
+                           Placeholder="请输入代收金额"
+                           x:Name="CollectionAmount"
+                           Margin="0,5,0,5"
+                           Grid.Row="13"
+                           Grid.Column="0" />
+                    <Entry Text="{Binding Cashback}"
+                           Keyboard="Numeric"
+                           Placeholder="请输入现返金额"
+                           x:Name="Cashback"
+                           Margin="0,5,0,5"
+                           Grid.Row="13"
+                           Grid.Column="1" />
+                    <Entry Text="{Binding OwedBack}"
+                           Keyboard="Numeric"
+                           Placeholder="请输入欠返金额"
+                           x:Name="OwedBack"
+                           Margin="0,5,0,5"
+                           Grid.Row="15"
+                           Grid.Column="0" />
+                    <Entry Text="{Binding DeliveryFees}"
+                           Keyboard="Numeric"
+                           Placeholder="请输入送货费金额"
+                           x:Name="DeliveryFees"
+                           Margin="0,5,0,5"
+                           Grid.Row="15"
+                           Grid.Column="1" />
+                    <Picker x:Name="PaymentMethods"
+                            Title="付款方式" 
+                            Grid.Row="17" 
+                            Grid.Column="0" 
+                            Opacity="50"
+                            WidthRequest="50">
+                        <Picker.Items>
+                            <x:String>提付</x:String>
+                            <x:String>现付</x:String>
+                            <x:String>回付</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Picker 
+                        x:Name="TransitMethod" 
+                        Title="中转方式" 
+                        Grid.Row="17"
+                        Grid.Column="1"
+                        Opacity="50"
+                        WidthRequest="50" >
+                        <Picker.Items>
+                            <x:String>全程</x:String>
+                            <x:String>另付</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--
+                    <Picker x:Name="picker2" Title="工本费" Grid.Row="15" Grid.Column="1"  Opacity="50" ItemsSource="{Binding ItemsSource}" />
+                    -->
+                </Grid>
+            </ScrollView>
+            <!--单据尾部-->
+            <!--发货页面按钮-->
+            <StackLayout Spacing="0" Orientation="Horizontal">
+                <Button Text="运单提交"
+                        IsEnabled="{Binding !IsSave}"
+                        HorizontalOptions="FillAndExpand"/>
+                <Button Text="打印" 
+                        IsEnabled="{Binding IsPrintWaybill}"/>
+                <Button Text="功能"
+                        IsEnabled="{Binding IsPrintWaybillLabels}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

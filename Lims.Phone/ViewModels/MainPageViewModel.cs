@@ -161,6 +161,10 @@ namespace Lims.Phone.ViewModels
 
             switch(obj.ToString().ToUpper().Trim())
             {
+                case "SHIPPING":
+                    page = new ShippingPage();
+                    Application.Current.MainPage.Navigation.PushAsync(page, true);
+                    break;
                 case "LOGOUT":
                     IsLogin = false;
                     Account = string.Empty;
