@@ -66,7 +66,7 @@ namespace Lims.Phone.ViewModels
 
         private string _shippername;
         /// <summary>
-        /// 
+        /// 发货人姓名
         /// </summary>
         public string ShipperName
         {
@@ -76,6 +76,76 @@ namespace Lims.Phone.ViewModels
                 _shippername = value;
                 OnPropertyChanged();
              }
+        }
+
+        private string _pickuplocations;
+        /// <summary>
+        /// 提货网点
+        /// </summary>
+        public string PickupLocations
+        {
+            get { return _pickuplocations; }
+            set
+            {
+                _pickuplocations = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _destination;
+        /// <summary>
+        /// 目的地
+        /// </summary>
+        public string Destination
+        {
+            get { return _destination; }
+            set
+            {
+                _destination = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _cargoname;
+        /// <summary>
+        /// 货物名称
+        /// </summary>
+        public string CargoName
+        {
+            get { return _cargoname; }
+            set
+            {
+                _cargoname = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _numberofpieces;
+        /// <summary>
+        /// 货物件数
+        /// </summary>
+        public string NumberOfPieces
+        {
+            get { return _numberofpieces; }
+            set
+            {
+                _numberofpieces = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _freightrates;
+        /// <summary>
+        /// 运费
+        /// </summary>
+        public string FreightRates
+        {
+            get { return _freightrates; }
+            set
+            {
+                _freightrates = value;
+                OnPropertyChanged();
+            }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string name = "")
