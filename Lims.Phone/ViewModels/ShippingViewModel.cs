@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Lims.Phone.Services;
 
 namespace Lims.Phone.ViewModels
 {
@@ -387,6 +388,27 @@ namespace Lims.Phone.ViewModels
         public void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public ShippingViewModel()
+        {
+            if (App.Current.Properties.ContainsKey("IsLogin"))
+                IsLogin = Convert.ToBoolean(Properties.Get("IsLogin"));
+
+            if (App.Current.Properties.ContainsKey("Account"))
+                Account = Properties.Get("Account");
+
+            if (App.Current.Properties.ContainsKey("Company"))
+                Company = Properties.Get("Company");
+
+            if (App.Current.Properties.ContainsKey("Name"))
+                Name = Properties.Get("Name");
+
+            if (App.Current.Properties.ContainsKey("Date"))
+                Date = Properties.Get("Date");
+
+            if (App.Current.Properties.ContainsKey("defaultPrinter"))
+                PrintName = Properties.Get("defaultPrinter");
         }
     }
 }

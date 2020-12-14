@@ -23,7 +23,8 @@
                 </Grid.RowDefinitions>
                 <Frame BorderColor="#d0e8f2"
                        Grid.Row="0"
-                       Grid.Column="0">
+                       Grid.Column="0"
+                       IsEnabled="{Binding IsLogin}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"
                                               Command="{Binding TapCommand}"
@@ -46,7 +47,8 @@
                 </Frame>
                 <Frame BorderColor="#d0e8f2"
                        Grid.Row="0"
-                       Grid.Column="1">
+                       Grid.Column="1"
+                       IsEnabled="{Binding IsLogin}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
@@ -67,7 +69,8 @@
                 </Frame>
                 <Frame BorderColor="#d0e8f2"
                        Grid.Row="0"
-                       Grid.Column="2">
+                       Grid.Column="2"
+                       IsEnabled="{Binding IsLogin}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
@@ -88,7 +91,8 @@
                 </Frame>
                 <Frame BorderColor="#d0e8f2"
                        Grid.Row="1"
-                       Grid.Column="0">
+                       Grid.Column="0"
+                       IsEnabled="{Binding IsLogin}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
@@ -109,7 +113,8 @@
                 </Frame>
                 <Frame BorderColor="#d0e8f2"
                        Grid.Row="1"
-                       Grid.Column="1">
+                       Grid.Column="1"
+                       IsEnabled="{Binding IsLogin}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
@@ -130,7 +135,8 @@
                 </Frame>
                 <Frame BorderColor="#d0e8f2"
                        Grid.Row="1"
-                       Grid.Column="2">
+                       Grid.Column="2"
+                       IsEnabled="{Binding IsLogin}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
@@ -151,7 +157,8 @@
                 </Frame>
                 <Frame BorderColor="#d0e8f2"
                        Grid.Row="2"
-                       Grid.Column="0">
+                       Grid.Column="0"
+                       IsEnabled="{Binding IsLogin}">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="1"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
