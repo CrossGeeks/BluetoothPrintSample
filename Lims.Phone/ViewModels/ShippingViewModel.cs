@@ -121,11 +121,11 @@ namespace Lims.Phone.ViewModels
             }
         }
 
-        private string _numberofpieces;
+        private int _numberofpieces;
         /// <summary>
         /// 货物件数
         /// </summary>
-        public string NumberOfPieces
+        public int NumberOfPieces
         {
             get { return _numberofpieces; }
             set
@@ -135,11 +135,11 @@ namespace Lims.Phone.ViewModels
             }
         }
 
-        private string _freightrates;
+        private decimal _freightrates;
         /// <summary>
         /// 运费
         /// </summary>
-        public string FreightRates
+        public decimal FreightRates
         {
             get { return _freightrates; }
             set

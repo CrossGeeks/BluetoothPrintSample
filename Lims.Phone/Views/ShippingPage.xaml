@@ -245,17 +245,16 @@
                             <x:String>回付</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Picker 
-                        x:Name="TransitMethod" 
-                        Title="中转方式" 
-                        Grid.Row="17"
-                        Grid.Column="1"
-                        Opacity="50"
-                        WidthRequest="50" >
-                        <Picker.Items>
-                            <x:String>全程</x:String>
-                            <x:String>另付</x:String>
-                        </Picker.Items>
+                    <Picker x:Name="TransitMethod" 
+                            Title="中转方式" 
+                            Grid.Row="17"
+                            Grid.Column="1"
+                            Opacity="50"
+                            WidthRequest="50" >
+                            <Picker.Items>
+                                <x:String>全程</x:String>
+                                <x:String>另付</x:String>
+                            </Picker.Items>
                     </Picker>
                     <!--
                     <Picker x:Name="picker2" Title="工本费" Grid.Row="15" Grid.Column="1"  Opacity="50" ItemsSource="{Binding ItemsSource}" />
@@ -267,7 +266,8 @@
             <StackLayout Spacing="0" Orientation="Horizontal">
                 <Button Text="运单提交"
                         IsEnabled="{Binding !IsSave}"
-                        HorizontalOptions="FillAndExpand"/>
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="Button_Clicked"/>
                 <Button Text="打印" 
                         IsEnabled="{Binding IsPrintWaybill}"/>
                 <Button Text="功能"
