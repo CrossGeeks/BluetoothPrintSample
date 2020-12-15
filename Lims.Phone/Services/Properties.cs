@@ -14,7 +14,7 @@ namespace Lims.Phone.Services
         public static string Get(string name)
         {
             //默认返回值
-            string result = string.Empty;
+            string result = "true";
 
             //将名称统一大写，防止错误
             name = name.ToUpper().Trim();

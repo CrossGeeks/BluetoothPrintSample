@@ -40,37 +40,6 @@ namespace Lims.Phone.Views
             {
                 //远程校验成功，将各种参数存入内存中
                 SaveToPropertitys.SaveTo(accountInfo.ResulitInfo.IsOK, accountInfo.Account, accountInfo.Company, accountInfo.Name,accountInfo.Date);
-                /*
-                //登录成功标志
-                
-                if (Application.Current.Properties.ContainsKey("IsLogin"))
-                    Application.Current.Properties["IsLogin"] = accountInfo.ResulitInfo.IsOK;
-                else
-                    Application.Current.Properties.Add("IsLogin", accountInfo.ResulitInfo.IsOK);
-
-                //账号信息
-                if (Application.Current.Properties.ContainsKey("Account"))
-                    Application.Current.Properties["Account"] = accountInfo.Account;
-                else
-                    Application.Current.Properties.Add("Account", accountInfo.Account);
-
-                //公司名称
-                if (Application.Current.Properties.ContainsKey("Company"))
-                    Application.Current.Properties["Company"] = accountInfo.Company;
-                else
-                    Application.Current.Properties.Add("Company", accountInfo.Company);
-
-                //Name
-                if (Application.Current.Properties.ContainsKey("Name"))
-                    Application.Current.Properties["Name"] = accountInfo.Name;
-                else
-                    Application.Current.Properties.Add("Name", accountInfo.Name);
-
-                //传递参数保存
-                Application.Current.SavePropertiesAsync();
-                */
-                //返回到主页面
-                Application.Current.MainPage.Navigation.PopAsync(true);
             }
             else
                 //远程Webservice数据校验失败，显示错误信息

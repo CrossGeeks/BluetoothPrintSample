@@ -392,6 +392,7 @@ namespace Lims.Phone.ViewModels
 
         public ShippingViewModel()
         {
+            var islogin = App.Current.Properties["IsLogin"];
             if (App.Current.Properties.ContainsKey("IsLogin"))
                 IsLogin = Convert.ToBoolean(Properties.Get("IsLogin"));
 

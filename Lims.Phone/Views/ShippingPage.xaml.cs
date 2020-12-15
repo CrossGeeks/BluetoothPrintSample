@@ -30,6 +30,18 @@ namespace Lims.Phone.Views
                 //校验通过
                 //取运单号
             }
+            else
+            {
+                //脚面校验未通过，需要显示错误
+                string message = string.Empty;
+                string controllername = string.Empty;
+
+                message = validationResult.Errors[1].ErrorMessage;
+                controllername = validationResult.Errors[1].PropertyName;
+                Entry entry = (Entry)FindByName(controllername);
+                DisplayAlert("错误信息",message,"确定");
+                entry.Focus();
+            }
         }
     }
 }
