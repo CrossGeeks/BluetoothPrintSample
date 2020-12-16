@@ -5,28 +5,25 @@
              Title="打印机设备管理">
     <ContentPage.Content>
         <StackLayout>
-            <!--
-                    Command="{Binding GetDeviceListCommand}"
-                    -->
             <Button Text="扫描蓝牙打印机"
                    Margin="10"
                    BackgroundColor="#d0e8f2"
                    Clicked="Button_Clicked">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
-                                  Binding="{Binding IsScanning}"
-                                  Value="True">
-                        <Setter Property="Text" Value="扫描停止"/>
-                        <Setter Property="BackgroundColor" Value="IndianRed"/>
+                                 Binding="{Binding IsScanning}"
+                                 Value="True">
+                        <Setter Property="Text" 
+                                Value="扫描停止"/>
+                        <Setter Property="BackgroundColor" 
+                                Value="IndianRed"/>
                     </DataTrigger>
                 </Button.Triggers>
             </Button>
-
             <ActivityIndicator IsRunning="{Binding IsScanning}"
                                IsVisible="{Binding IsScanning}"
                                HorizontalOptions="Center"
                                Color="#79a3b1"/>
-
             <ListView ItemsSource="{Binding Peripherals}"
                       HasUnevenRows="True"
                       SelectedItem="{Binding SelectedPeripheral, Mode=TwoWay}">
@@ -44,13 +41,11 @@
                                        Grid.Row="0"
                                        Grid.Column="0"
                                        Grid.RowSpan="2"/>
-
                                 <Label Text="{Binding Name}"
                                         FontAttributes="Bold"
                                         Grid.Column="1"
                                         Grid.Row="0"
                                         TextColor="Black"/>
-
                                 <Label Text="{Binding Uuid}"
                                         Grid.Column="1"
                                         Grid.Row="1"

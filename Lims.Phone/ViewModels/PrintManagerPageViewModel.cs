@@ -1,8 +1,8 @@
-﻿using Shiny.BluetoothLE;
+﻿using Lims.Phone.Services;
+using Shiny.BluetoothLE;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace Lims.Phone.ViewModels
 {

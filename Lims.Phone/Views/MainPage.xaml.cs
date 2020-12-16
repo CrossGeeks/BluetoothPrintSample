@@ -1,4 +1,5 @@
-﻿using Lims.Phone.ViewModels;
+﻿using Lims.Phone.Services;
+using Lims.Phone.ViewModels;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -49,28 +50,24 @@ namespace Lims.Phone.Views
         private void PropertiesToViewModel(MainPageViewModel mainPageViewModel)
         {
             //检验打印机名字
-            if (App.Current.Properties.ContainsKey("defaultPrinter"))
-                mainPageViewModel.PrintName = App.Current.Properties["defaultPrinter"].ToString().Trim();
+            mainPageViewModel.PrintName = Properties.Get("defaultprinter");
 
             //是否登录标志
-            if (App.Current.Properties.ContainsKey("IsLogin".ToUpper().Trim()))
-                mainPageViewModel.IsLogin = (bool)Application.Current.Properties["IsLogin".ToUpper().Trim()];
+            string tmp = Properties.Get("IsLogin");
+            tmp = tmp == string.Empty ? "false" : tmp;
+            mainPageViewModel.IsLogin =  Boolean.Parse(tmp);
 
             //账号
-            if (App.Current.Properties.ContainsKey("Account".ToUpper().Trim()))
-                mainPageViewModel.Account = Application.Current.Properties["Account".ToUpper().Trim()].ToString().Trim();
+            mainPageViewModel.Account = Properties.Get("Account");
 
             //公司名称
-            if (App.Current.Properties.ContainsKey("Company".ToUpper().Trim()))
-                mainPageViewModel.Company = Application.Current.Properties["Company".ToUpper().Trim()].ToString().Trim();
+            mainPageViewModel.Company = Properties.Get("Company");
 
             //名称
-            if (App.Current.Properties.ContainsKey("Name".ToUpper().Trim()))
-                mainPageViewModel.Name = Application.Current.Properties["Name".ToUpper().Trim()].ToString().Trim();
+            mainPageViewModel.Name = Properties.Get("Name");
 
             //日期
-            if (App.Current.Properties.ContainsKey("Date".ToUpper().Trim()))
-                mainPageViewModel.Date = Application.Current.Properties["Date".ToUpper().Trim()].ToString().Trim();
+            mainPageViewModel.Date = Properties.Get("Date");
         }
     }
 }

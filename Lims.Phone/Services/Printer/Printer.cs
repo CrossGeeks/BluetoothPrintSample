@@ -30,8 +30,7 @@ namespace Lims.Phone.Services
                 _selectedPeripheral = value;
                 if (_selectedPeripheral != null)
                 {
-                    App.Current.Properties.Add("defaultPrinter", _selectedPeripheral.Name);
-                    Application.Current.SavePropertiesAsync();
+                    Properties.Set("defaultPrinter", _selectedPeripheral.Name);
                     OnSelectedPeripheral(_selectedPeripheral);
                 }
             }
@@ -144,7 +143,7 @@ namespace Lims.Phone.Services
                 _centralManager.StopScan();
         }
 
-        public static async Task CheckPermissions()
+        public static async void CheckPermissions()
         {
             var status = await _centralManager.RequestAccess();
             if (status == AccessState.Denied)

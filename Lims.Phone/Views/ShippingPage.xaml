@@ -265,11 +265,13 @@
             </ScrollView>
             <!--单据尾部-->
             <!--发货页面按钮-->
-            <StackLayout Spacing="0" Orientation="Horizontal">
+            <StackLayout Spacing="0" 
+                         Orientation="Horizontal">
                 <Button Text="运单提交"
                         IsEnabled="{Binding !IsSave}"
                         HorizontalOptions="FillAndExpand"
-                        Clicked="Button_Clicked"/>
+                        Clicked="Button_Clicked"
+                        x:Name="SaveButton"/>
                 <Button Text="打印" 
                         IsEnabled="{Binding IsSave}"
                         Clicked="Print_Button_ClickedAsync"/>

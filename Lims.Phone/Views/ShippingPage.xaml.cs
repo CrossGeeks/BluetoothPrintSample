@@ -37,6 +37,7 @@ namespace Lims.Phone.Views
                 //保存运单
                 WaybillService.SaveWaybill(viewModel);
                 //将运单保存按钮状态改变，使打印按钮可用
+                SaveButton.IsEnabled = false;
                 viewModel.IsSave = true;
             }
             else
@@ -82,7 +83,27 @@ namespace Lims.Phone.Views
 
         private async void Print_Button_ClickedAsync(object sender, EventArgs e)
         {
+            //获取页面数据模型
+            ShippingViewModel viewModel = (ShippingViewModel)this.BindingContext;
+
+            //显示打印选项
             string action = await DisplayActionSheet("选择打印方式", "取消","", "运单单据", "全部标签", "部分标签");
+
+            //分拣打印选项
+            switch(action)
+            {
+                case "运单单据":
+                    await DisplayAlert("提示", "打印运单票据", "确定");
+                    break;
+                case "全部标签":
+                    await DisplayAlert("提示", "打印全部标签", "确定");
+                    break;
+                case "部分标签":
+                    await DisplayAlert("提示", "打印部分标签", "确定");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -14,10 +14,11 @@ namespace Lims.Phone.Services
         public static string Get(string name)
         {
             //默认返回值
-            string result = "true";
+            string result = string.Empty;
 
             //将名称统一大写，防止错误
             name = name.ToUpper().Trim();
+
             //如果相应的指存在，取值返回
             if (App.Current.Properties.ContainsKey(name))
                 result = App.Current.Properties[name].ToString().Trim();

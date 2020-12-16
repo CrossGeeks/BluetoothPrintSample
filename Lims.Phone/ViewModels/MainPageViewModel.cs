@@ -147,7 +147,9 @@ namespace Lims.Phone.ViewModels
 
         public MainPageViewModel()
         {
-            tapCommand = new Command(OnTapped);            
+            tapCommand = new Command(OnTapped);
+            //蓝牙设备检查调用，必须放在主页面，否则不起作用
+            BlueToothPrinter.CheckPermissions();
         }
 
         public ICommand TapCommand
