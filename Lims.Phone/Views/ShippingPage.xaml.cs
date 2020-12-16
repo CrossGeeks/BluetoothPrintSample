@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Lims.Phone.Services.Waybill;
 using Lims.Phone.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,20 @@ namespace Lims.Phone.Views
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            //viewModel
+            ShippingViewModel viewModel = (ShippingViewModel)BindingContext;
+
             ShippingViewModelValidator validationRules = new ShippingViewModelValidator();
             ValidationResult validationResult = validationRules.Validate((ShippingViewModel)BindingContext);
             if (validationResult.IsValid)
             {
                 //校验通过
                 //取运单号
+                viewModel.WaybillNumber = WaybillService.GetWaybillNumber(viewModel.Company, viewModel.Name);
+                //保存运单
+                WaybillService.SaveWaybill(viewModel);
+                //将运单保存按钮状态改变，使打印按钮可用
+                viewModel.IsSave = true;
             }
             else
             {
@@ -69,6 +78,11 @@ namespace Lims.Phone.Views
             Picker picker = (Picker)sender;
             ShippingViewModel viewModel = (ShippingViewModel)this.BindingContext;
             viewModel.TransitMethod = picker.SelectedItem.ToString();
+        }
+
+        private async void Print_Button_ClickedAsync(object sender, EventArgs e)
+        {
+            string action = await DisplayActionSheet("选择打印方式", "取消", "运单单据", "全部标签", "部分标签");
         }
     }
 }

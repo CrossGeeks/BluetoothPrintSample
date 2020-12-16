@@ -271,9 +271,10 @@
                         HorizontalOptions="FillAndExpand"
                         Clicked="Button_Clicked"/>
                 <Button Text="打印" 
-                        IsEnabled="{Binding IsPrintWaybill}"/>
+                        IsEnabled="{Binding IsSave}"
+                        Clicked="Print_Button_ClickedAsync"/>
                 <Button Text="功能"
-                        IsEnabled="{Binding IsPrintWaybillLabels}"/>
+                        IsEnabled="{Binding IsSave}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
