@@ -82,7 +82,7 @@ namespace Lims.Phone.Views
 
         private async void Print_Button_ClickedAsync(object sender, EventArgs e)
         {
-            string action = await DisplayActionSheet("选择打印方式", "取消", "运单单据", "全部标签", "部分标签");
+            string action = await DisplayActionSheet("选择打印方式", "取消","", "运单单据", "全部标签", "部分标签");
         }
     }
 }

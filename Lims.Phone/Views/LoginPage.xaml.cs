@@ -28,7 +28,11 @@ namespace Lims.Phone.Views
             LoginViewModel loginViewModel = (LoginViewModel)BindingContext;
             ValidationResult validationResult = validationRules.Validate(loginViewModel);
             if (validationResult.IsValid)
+            { 
                 WebServiceValidator(loginViewModel);
+                //返回到主页面
+                Application.Current.MainPage.Navigation.PopAsync(true);
+            }
             else
                 DisplayError(validationResult.Errors);
         }
