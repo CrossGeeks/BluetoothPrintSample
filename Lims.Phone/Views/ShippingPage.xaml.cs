@@ -36,12 +36,39 @@ namespace Lims.Phone.Views
                 string message = string.Empty;
                 string controllername = string.Empty;
 
-                message = validationResult.Errors[1].ErrorMessage;
-                controllername = validationResult.Errors[1].PropertyName;
-                Entry entry = (Entry)FindByName(controllername);
-                DisplayAlert("错误信息",message,"确定");
-                entry.Focus();
+                controllername = validationResult.Errors[0].PropertyName;
+                message = validationResult.Errors[0].ErrorMessage;
+
+                var controller = FindByName(controllername);
+                var controllertype = controller.GetType(); ;
+
+                switch(controllertype.Name.ToUpper().Trim())
+                {
+                    case "PICKER":
+                        Picker picker = (Picker)controller;
+                        picker.Focus();
+                        break;
+                    default:
+                        App.Current.MainPage.DisplayAlert("错误提示", message, "确定");
+                        Entry entry = (Entry)controller;
+                        entry.Focus();
+                        break;
+                }
             }
+        }
+
+        private void PaymentMethods_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            ShippingViewModel viewModel = (ShippingViewModel)this.BindingContext;
+            viewModel.PaymentMethods = picker.SelectedItem.ToString();
+        }
+
+        private void TransitMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            ShippingViewModel viewModel = (ShippingViewModel)this.BindingContext;
+            viewModel.TransitMethod = picker.SelectedItem.ToString();
         }
     }
 }

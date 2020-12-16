@@ -121,11 +121,11 @@ namespace Lims.Phone.ViewModels
             }
         }
 
-        private int _numberofpieces;
+        private string _numberofpieces;
         /// <summary>
         /// 货物件数
         /// </summary>
-        public int NumberOfPieces
+        public string NumberOfPieces
         {
             get { return _numberofpieces; }
             set

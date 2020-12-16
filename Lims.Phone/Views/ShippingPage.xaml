@@ -238,7 +238,8 @@
                             Grid.Row="17" 
                             Grid.Column="0" 
                             Opacity="50"
-                            WidthRequest="50">
+                            WidthRequest="50"
+                            SelectedIndexChanged="PaymentMethods_SelectedIndexChanged">
                         <Picker.Items>
                             <x:String>提付</x:String>
                             <x:String>现付</x:String>
@@ -250,7 +251,8 @@
                             Grid.Row="17"
                             Grid.Column="1"
                             Opacity="50"
-                            WidthRequest="50" >
+                            WidthRequest="50"
+                            SelectedIndexChanged="TransitMethod_SelectedIndexChanged">
                             <Picker.Items>
                                 <x:String>全程</x:String>
                                 <x:String>另付</x:String>

@@ -16,7 +16,11 @@ namespace Lims.Phone.Services
             controllername = errors[1].PropertyName;
             message = errors[1].ErrorMessage;
 
+            var controller = App.Current.FindByName(controllername);
+            var controllertype = controller.GetType(); ;
+
             await App.Current.MainPage.DisplayAlert("错误提示",message,"确定");
+            //var controlle
         }
     }
 }
