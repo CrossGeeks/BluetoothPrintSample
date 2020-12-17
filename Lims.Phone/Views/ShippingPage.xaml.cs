@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Lims.Phone.Services.Waybill;
+using Lims.Phone.Services.Printer;
 using Lims.Phone.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,13 @@ namespace Lims.Phone.Views
                 //取运单号
                 viewModel.WaybillNumber = WaybillService.GetWaybillNumber(viewModel.Company, viewModel.Name);
                 //保存运单
-                WaybillService.SaveWaybill(viewModel);
-                //将运单保存按钮状态改变，使打印按钮可用
-                SaveButton.IsEnabled = false;
-                viewModel.IsSave = true;
+                if (WaybillService.SaveWaybill(viewModel))
+                {
+                    DisplayAlert("x信息", "运单保存完毕", "确定");
+                    //将运单保存按钮状态改变，使打印按钮可用
+                    SaveButton.IsEnabled = false;
+                    viewModel.IsSave = true;
+                }
             }
             else
             {
@@ -93,7 +97,8 @@ namespace Lims.Phone.Views
             switch(action)
             {
                 case "运单单据":
-                    await DisplayAlert("提示", "打印运单票据", "确定");
+                    //await DisplayAlert("提示", "打印运单票据", "确定");
+                    WaybillPrint.PrintWaybill(viewModel);
                     break;
                 case "全部标签":
                     await DisplayAlert("提示", "打印全部标签", "确定");

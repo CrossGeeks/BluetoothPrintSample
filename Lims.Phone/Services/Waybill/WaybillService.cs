@@ -28,7 +28,7 @@ namespace Lims.Phone.Services.Waybill
             return result;
         }
 
-        public static void SaveWaybill(ShippingViewModel shippingViewModel)
+        public static bool SaveWaybill(ShippingViewModel shippingViewModel)
         {
             //保价费等与保价金额的千分之三
             decimal bjje = Convert.ToDecimal(shippingViewModel.GuaranteedAmount);
@@ -87,7 +87,7 @@ namespace Lims.Phone.Services.Waybill
             );
 
             string result = serviceSoapClient.XD_New(shippingViewModel.Company, ydinfo);
-
+            return true;
         }
     }
 }

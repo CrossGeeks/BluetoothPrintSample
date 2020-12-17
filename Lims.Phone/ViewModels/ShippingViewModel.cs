@@ -392,24 +392,23 @@ namespace Lims.Phone.ViewModels
 
         public ShippingViewModel()
         {
-            var islogin = App.Current.Properties["IsLogin"];
-            if (App.Current.Properties.ContainsKey("IsLogin"))
-                IsLogin = Convert.ToBoolean(Properties.Get("IsLogin"));
+            if (App.Current.Properties.ContainsKey("IsLogin".ToUpper().Trim()))
+                IsLogin = Convert.ToBoolean(Properties.Get("IsLogin".ToUpper().Trim()));
 
-            if (App.Current.Properties.ContainsKey("Account"))
-                Account = Properties.Get("Account");
+            if (App.Current.Properties.ContainsKey("Account".ToUpper().Trim()))
+                Account = Properties.Get("Account".ToUpper().Trim());
 
-            if (App.Current.Properties.ContainsKey("Company"))
-                Company = Properties.Get("Company");
+            if (App.Current.Properties.ContainsKey("Company".ToUpper().Trim()))
+                Company = Properties.Get("Company".ToUpper().Trim());
 
-            if (App.Current.Properties.ContainsKey("Name"))
-                Name = Properties.Get("Name");
+            if (App.Current.Properties.ContainsKey("Name".ToUpper().Trim()))
+                Name = Properties.Get("Name".ToUpper().Trim());
 
-            if (App.Current.Properties.ContainsKey("Date"))
-                Date = Properties.Get("Date");
+            if (App.Current.Properties.ContainsKey("Date".ToUpper().Trim()))
+                Date = Properties.Get("Date".ToUpper().Trim());
 
-            if (App.Current.Properties.ContainsKey("defaultPrinter"))
-                PrintName = Properties.Get("defaultPrinter");
+            if (App.Current.Properties.ContainsKey("defaultPrinter".ToUpper().Trim()))
+                PrintName = Properties.Get("defaultPrinter".ToUpper().Trim());
         }
     }
 }
