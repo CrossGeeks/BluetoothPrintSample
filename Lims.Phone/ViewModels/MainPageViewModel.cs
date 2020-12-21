@@ -156,44 +156,10 @@ namespace Lims.Phone.ViewModels
         public MainPageViewModel()
         {
             tapCommand = new Command(OnTapped);
-            /*
-            PrintName = Properties.Get("defaultprinter").ToString().Trim();
-            if (!string.IsNullOrEmpty(PrintName))
-            {
-                _connectedDisposable = _centralManager.GetConnectedPeripherals().Subscribe(scanResult => 
-                {
-                    scanResult.ToList().ForEach(item => 
-                    {
-                        if(!string.IsNullOrEmpty(item.Name) && (item.Name == PrintName))
-                            _centralManager.StopScan();
+            var tt = "1234";
+            if (BlueToothPrinter.SelectedPeripheral == null)
+                tt = "3456";
 
-                        _scanDisposable.Dispose();
-                    });
-                });
-
-                if (_centralManager.IsScanning)
-                    _centralManager.StopScan();
-                if (_centralManager.Status == Shiny.AccessState.Available && !_centralManager.IsScanning)
-                {
-                    _scanDisposable = _centralManager.ScanForUniquePeripherals().Subscribe(scanResult =>
-                    {
-                        if (!string.IsNullOrEmpty(PrintName) && !BlueToothPrinter.Peripherals.Contains(scanResult))
-                        {
-                            BlueToothPrinter.Peripherals.Add(scanResult);
-                        }
-                        BlueToothPrinter.SelectedPeripheral = null;
-                    });
-                }
-            }
-            else
-            {
-                GetDeviceListCommand = new Command(BlueToothPrinter.GetDeviceList);
-                SetAdapterCommand = new Command(async () => await BlueToothPrinter.SetAdapter());
-                CheckPermissionsCommand = new Command(async () => await BlueToothPrinter.CheckPermissions());
-                //蓝牙设备检查调用，必须放在主页面，否则不起作用
-                CheckPermissionsCommand.Execute(null);
-            }
-            */
             GetDeviceListCommand = new Command(BlueToothPrinter.GetDeviceList);
             SetAdapterCommand = new Command(async () => await BlueToothPrinter.SetAdapter());
             CheckPermissionsCommand = new Command(async () => await BlueToothPrinter.CheckPermissions());
