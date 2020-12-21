@@ -206,12 +206,29 @@ namespace Lims.Phone.ViewModels
         }
 
         private string _deliveryfees;
+        /// <summary>
+        /// 送货费
+        /// </summary>
         public string DeliveryFees
         {
             get { return _deliveryfees; }
             set
             {
                 _deliveryfees = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _accountsreceivable;
+        /// <summary>
+        /// 应收款
+        /// </summary>
+        public string AccountsReceivable
+        {
+            get { return _accountsreceivable; }
+            set
+            {
+                _accountsreceivable = value;
                 OnPropertyChanged();
             }
         }

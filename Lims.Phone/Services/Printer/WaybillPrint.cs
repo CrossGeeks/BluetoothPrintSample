@@ -27,9 +27,9 @@ namespace Lims.Phone.Services.Printer
         private static void Print(ShippingViewModel viewModel)
         {
             string TemplateWaybill = GetTemplateWaybill("");
+            string printstr = GetPrintString(TemplateWaybill, viewModel);
 
-
-            //打印机指令包含中卫应为GB2312，装换之
+            //打印机指令包含中卫应为GB2312，转换
             byte[] printbytes = Encoding.GetEncoding("UTF-8").GetBytes(printstr);
             printbytes = Encoding.Convert(Encoding.GetEncoding("UTF-8"), Encoding.GetEncoding("GB2312"), printbytes);
             MemoryStream stream = new MemoryStream(printbytes);
@@ -39,17 +39,37 @@ namespace Lims.Phone.Services.Printer
             _savedCharacteristic.BlobWrite(stream).Subscribe(
                 result => {
                     Debug.WriteLine(result.Position);
-                    Application.Current.MainPage.DisplayAlert("信息", "打印完毕", "确定");
                 },
                 exception => {
                     App.Current.MainPage.DisplayAlert("错误", "无法完成打印", "确定");
                 }
             );
+            Debug.WriteLine(stream);
+            Application.Current.MainPage.DisplayAlert("信息", "打印完毕", "确定");
+        }
+
+        private static string GetPrintString(string templateWaybill, ShippingViewModel viewModel)
+        {
+            string result = String.Format(templateWaybill,
+                viewModel.Company.ToString().Trim(),    //企业名称，Company
+                viewModel.WaybillNumber.ToString().Trim(),  //代收金额
+                string.IsNullOrEmpty(viewModel.CollectionAmount) ? "" : viewModel.CollectionAmount.ToString().Trim(),
+                viewModel.AccountsReceivable.ToString().Trim(),
+                DateTime.Now.Date.ToString("yyyy-MM-dd"),
+                viewModel.CargoName.Trim(),
+                "",
+                viewModel.Destination.Trim(),
+                viewModel.NumberOfPieces.Trim()
+                );
+
+            return result;
         }
 
         /// <summary>
         /// {0}Company,{1}单据号，{2}代收款,{3}应收款，{4}date,{5}货品名称，{6}发货站点，{7}到货站点
-        /// {8}件数，{9}收货人姓名，{10}收货电话，
+        /// {8}件数，{9}收货人姓名，{10}收货电话，{11}托运人，{12}托运电话，{13}付款方式，{14}总运费
+        /// {15}备注，{16}经办人,{17}发货人签字,{18}发站电话，{19}到站电话，{20}持卡人，{21}卡号
+        /// {22}查询日期，{23}汉字Logo,{24}二维码内容
         /// </summary>
         /// <param name="template"></param>
         /// <returns></returns>
@@ -82,15 +102,51 @@ namespace Lims.Phone.Services.Printer
             printstr += "TEXT 380,136,\"TSS24.BF2\",0,1,1,\"件数：\" \r\n";
             printstr += "TEXT 448,136,\"3\",0,1,1,\"{8}\" \r\n";
             //收货人、收货电话
-            printstr += "TEXT 6,166,\"TSS24.BF2\",0,1,1,\"收货人：\" \r\n";
-            printstr += "TEXT 94,166,\"TSS24.BF2\",0,1,1,\"{9}\" \r\n";
-            printstr += "TEXT 180,166,\"TSS24.BF2\",0,1,1,\"收货电话：\" \r\n";
-            printstr += "TEXT 288,166,\"3\",0,1,1,\"{10}\" \r\n";
+            //printstr += "TEXT 6,166,\"TSS24.BF2\",0,1,1,\"收货人：\" \r\n";
+            //printstr += "TEXT 94,166,\"TSS24.BF2\",0,1,1,\"{9}\" \r\n";
+            //printstr += "TEXT 180,166,\"TSS24.BF2\",0,1,1,\"收货电话：\" \r\n";
+            //printstr += "TEXT 288,166,\"3\",0,1,1,\"{10}\" \r\n";
             //托运人、托运电话
-            printstr += "TEXT 6,{1},\"{2}\",{3},{4},{5},\"{6}\" \r\n", 6, 196, "TSS24.BF2", 0, 1, 1, "托运人：");
-            printstr += String.Format("TEXT {0},{1},\"{2}\",{3},{4},{5},\"{6}\" \r\n", 94, 196, "TSS24.BF2", 0, 1, 1, "测试");
-            printstr += String.Format("TEXT {0},{1},\"{2}\",{3},{4},{5},\"{6}\" \r\n", 180, 196, "TSS24.BF2", 0, 1, 1, "托运电话：");
-            printstr += String.Format("TEXT {0},{1},\"{2}\",{3},{4},{5},\"{6}\" \r\n", 288, 196, "3", 0, 1, 1, "15010201672");
+            //printstr += "TEXT 6,196,\"TSS24.BF2\",0,1,1,\"托运人：\" \r\n";
+            //printstr += "TEXT 94,196,\"TSS24.BF2\",0,1,1,\"{11}\" \r\n";
+            //printstr += "TEXT 180,196,\"TSS24.BF2\",0,1,1,\"托运电话：\" \r\n";
+            //printstr += "TEXT 288,196,\"3\",0,1,1,\"{12}\" \r\n";
+            //付款方式、总运费、备注
+            //printstr += "TEXT 6,226,\"TSS24.BF2\",0,1,1,\"付款方式：\" \r\n";
+            //printstr += "TEXT 110,226,\"TSS24.BF2\",0,1,1,\"{13}\" \r\n";
+            //printstr += "TEXT 180,226,\"TSS24.BF2\",0,1,1,\"总运费：\" \r\n";
+            //printstr += "TEXT 268,226,\"3\",0,1,1,\"{14}\" \r\n";
+            //printstr += "TEXT 280,226,\"TSS24.BF2\",0,1,1,\"备注：\" \r\n";
+            //printstr += "TEXT 446,226,\"TSS24.BF2\",0,1,1,\"{15}\" \r\n";
+            //分割线
+            //printstr += "BAR 0,260,580,1 \r\n";
+            //经办人、发货人签字
+            //printstr += "TEXT 6,270,\"TSS24.BF2\",0,1,1,\"经办人：\" \r\n";
+            //printstr += "TEXT 94,270,\"TSS24.BF2\",0,1,1,\"{16}\" \r\n";
+            //printstr += "TEXT 180,270,\"TSS24.BF2\",0,1,1,\"发货人签字：\" \r\n";
+            //printstr += "TEXT 312,270,\"TSS24.BF2\",0,1,1,\"{17}\" \r\n";
+            //发站电话
+            //printstr += "TEXT 6,360,\"TSS24.BF2\",0,1,1,\"发站电话：\" \r\n";
+            //printstr += "TEXT 110,360,\"3\",0,1,1,\"{18}\" \r\n";
+            //发站电话
+            //printstr += "TEXT 6,330,\"TSS24.BF2\",0,1,1,\"到站电话：\" \r\n";
+            //printstr += "TEXT 110,330,\"3\",0,1,1,\"{19}\" \r\n";
+            //发货存根
+            //printstr += "TEXT 6,360,\"TSS24.BF2\",0,1,1,\"发货存根：\" \r\n";
+            //printstr += "TEXT 110,360,\"TSS24.BF2\",0,1,1,\"保丢不保损！\" \r\n";
+            //持卡人、卡号
+            //printstr += "TEXT 6,390,\"TSS24.BF2\",0,1,1,\"持卡人：\" \r\n";
+            //printstr += "TEXT 92,390,\"TSS24.BF2\",0,1,1,\"{20}\" \r\n";
+            //printstr += "TEXT 180,390,\"TSS24.BF2\",0,1,1,\"卡号：\" \r\n";
+            //printstr += "TEXT 252,393,\"3\",0,1,1,\"{21}\" \r\n";
+            //提示信息
+            //printstr += "TEXT 6,420,\"TSS24.BF2\",0,1,1,\"货物查询时间为{22}日内，过期概不负责！\" \r\n";
+            //LOGO字符打印
+            //printstr += "TEXT 300,200,\"TSS24.BF2\",0,3,3,\"{23}\" \r\n";
+            //打印二维码
+            //printstr += "QRCODE 440,280,\"H\",4,\"A\",0,\"{24}\" \r\n";
+            //打印命令
+            printstr += "PRINT 1 \r\n";
 
             return printstr;
         }
@@ -100,7 +156,7 @@ namespace Lims.Phone.Services.Printer
             if (!peripheral.IsConnected())
             {
                 peripheral.Connect();
-                peripheral.RequestMtu(512);
+                peripheral.RequestMtu(500);
             }
             _perifDisposable = peripheral.WhenAnyCharacteristicDiscovered().Subscribe((characteristic) =>
             {
