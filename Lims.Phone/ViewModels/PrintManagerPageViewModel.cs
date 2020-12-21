@@ -28,9 +28,12 @@ namespace Lims.Phone.ViewModels
                 _selectedPeripheral = value;
                 if (_selectedPeripheral != null)
                 {
-                    Services.BlueToothPrinter.SelectedPeripheral = _selectedPeripheral;
+                    BlueToothPrinter.SelectedPeripheral = _selectedPeripheral;
+                    Properties.Set("defaultprinter", _selectedPeripheral.Name);
+                    Properties.Set("defaultprinteruuid", _selectedPeripheral.Uuid.ToString().Trim());
                     string msg = string.Format("已将名为 {0} 的蓝牙打印机设为默认打印机，请返回！！！", _selectedPeripheral.Name);
                     App.Current.MainPage.DisplayAlert("提示信息", msg, "确定");
+                    App.Current.MainPage.Navigation.PopAsync(true);
                     Peripherals = null;
                 }
             }

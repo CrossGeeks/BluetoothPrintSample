@@ -156,7 +156,7 @@ namespace Lims.Phone.ViewModels
         public MainPageViewModel()
         {
             tapCommand = new Command(OnTapped);
-
+            /*
             PrintName = Properties.Get("defaultprinter").ToString().Trim();
             if (!string.IsNullOrEmpty(PrintName))
             {
@@ -193,6 +193,12 @@ namespace Lims.Phone.ViewModels
                 //蓝牙设备检查调用，必须放在主页面，否则不起作用
                 CheckPermissionsCommand.Execute(null);
             }
+            */
+            GetDeviceListCommand = new Command(BlueToothPrinter.GetDeviceList);
+            SetAdapterCommand = new Command(async () => await BlueToothPrinter.SetAdapter());
+            CheckPermissionsCommand = new Command(async () => await BlueToothPrinter.CheckPermissions());
+            //蓝牙设备检查调用，必须放在主页面，否则不起作用
+            CheckPermissionsCommand.Execute(null);
         }
 
         public ICommand TapCommand
