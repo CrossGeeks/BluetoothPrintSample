@@ -10,33 +10,24 @@ namespace Lims.Phone.Services.Printer
 {
     public static class WaybillPrint
     {
-        private static readonly IDisposable _scanDisposable;
-        private static IDisposable _connectedDisposable;
-        private static IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
+        //private static readonly IDisposable _scanDisposable;
+        //private static IDisposable _connectedDisposable;
+        //private static IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
 
-        public static ObservableCollection<IPeripheral> Peripherals { get; set; } = new ObservableCollection<IPeripheral>();
+        //public static ObservableCollection<IPeripheral> Peripherals { get; set; } = new ObservableCollection<IPeripheral>();
 
         public static void PrintWaybill(ShippingViewModel viewModel)
         {
-            string guidName = Properties.Get("defaultprinter").ToString().Trim();
-            var tt = Getperipheral(guidName);
+            IPeripheral peripheral = BlueToothPrinter.SelectedPeripheral;
+            //string printername = Properties.Get("defaultprinter").ToString().Trim();
+            //Print_Check(printername);
         }
-        private static IPeripheral Getperipheral(string printname)
+
+        private static void Print_Check(string printername)
         {
-            IPeripheral peripheral = null;
-
-            _connectedDisposable = _centralManager.GetConnectedPeripherals().Subscribe(scanResult =>
-            {
-                scanResult.ToList().ForEach(item =>
-                {
-                    if (!string.IsNullOrEmpty(item.Name) && item.Name == printname)
-                    {
-                        peripheral =  item;
-                    }
-                });
-            });
-
-            return peripheral;
+            Services.BlueToothPrinter.CheckPermissions();
+            //IPeripheral peripheral = BlueToothPrinter.GetDeviceByName(printername);
+            BlueToothPrinter.GetDeviceList();
         }
     }
 }

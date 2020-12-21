@@ -6,15 +6,16 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="扫描蓝牙打印机"
-                   Margin="10"
-                   BackgroundColor="#d0e8f2"
-                   Clicked="Button_Clicked">
+                    Margin="10"
+                    BackgroundColor="#d0e8f2"
+                    Command="{Binding GetDeviceListCommand}">
+                <!--Clicked="Button_Clicked"-->
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding IsScanning}"
                                  Value="True">
                         <Setter Property="Text" 
-                                Value="扫描停止"/>
+                                Value="停止扫描"/>
                         <Setter Property="BackgroundColor" 
                                 Value="IndianRed"/>
                     </DataTrigger>

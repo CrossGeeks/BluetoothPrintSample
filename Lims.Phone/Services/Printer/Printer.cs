@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Lims.Phone.Services
 {
@@ -21,72 +20,22 @@ namespace Lims.Phone.Services
         static IPeripheral _selectedPeripheral;
         public static IPeripheral SelectedPeripheral
         {
-            get
-            {
-                return _selectedPeripheral;
-            }
+            get{ return _selectedPeripheral; }
             set
             {
                 _selectedPeripheral = value;
                 if (_selectedPeripheral != null)
-                {
-                    Properties.Set("defaultPrinter", _selectedPeripheral.Name);
                     OnSelectedPeripheral(_selectedPeripheral);
-                }
             }
         }
 
         private static void OnSelectedPeripheral(IPeripheral selectedPeripheral)
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                SelectedPeripheral = null;
-            });
+            Properties.Set("defaultPrinter", _selectedPeripheral.Name);
+            Properties.Set("defaultprinteruuid", _selectedPeripheral.Uuid);
 
             _scanDisposable?.Dispose();
-            IsScanning = _centralManager.IsScanning;
-        }
-
-        public static void SetDefaultPrinter(string printname)
-        {
-            _connectedDisposable = _centralManager.GetConnectedPeripherals().Subscribe(scanResult =>
-            {
-                scanResult.ToList().ForEach(
-                 item =>
-                 {
-                     if (!string.IsNullOrEmpty(item.Name) && item.Name == printname)
-                     {
-                         Peripherals.Add(item);
-                         _centralManager.StopScan();
-                         Device.BeginInvokeOnMainThread(async () =>
-                         {
-                             SelectedPeripheral = null;
-                         });
-
-                         _scanDisposable?.Dispose();
-                         IsScanning = _centralManager.IsScanning;
-                     }
-                 });
-
-                _connectedDisposable?.Dispose();
-            });
-
-            if (_centralManager.IsScanning)
-                _centralManager.StopScan();
-            if (_centralManager.Status == Shiny.AccessState.Available && !_centralManager.IsScanning)
-            {
-                _scanDisposable = _centralManager.ScanForUniquePeripherals().Subscribe(scanResult =>
-                {
-                    if (!string.IsNullOrEmpty(scanResult.Name) && !Peripherals.Contains(scanResult))
-                    {
-                        Peripherals.Add(scanResult);
-                        Device.BeginInvokeOnMainThread(async () =>
-                        {
-                            SelectedPeripheral = null;
-                        });
-                    }
-                });
-            }
+            IsScanning = false;
         }
 
         /// <summary>
@@ -106,7 +55,6 @@ namespace Lims.Phone.Services
                     {
                         if (!string.IsNullOrEmpty(scanResult.Name) && !Peripherals.Contains(scanResult))
                             Peripherals.Add(scanResult);
-
                     });
                 }
             }
@@ -143,18 +91,17 @@ namespace Lims.Phone.Services
                 _centralManager.StopScan();
         }
 
-        public static async void CheckPermissions()
+        public static async Task CheckPermissions()
         {
             var status = await _centralManager.RequestAccess();
+
             if (status == AccessState.Denied)
             {
                 await App.Current.MainPage.DisplayAlert("权限", "你需要打开你的蓝牙才能使用这个应用程序。", "确定");
                 Xamarin.Essentials.AppInfo.ShowSettingsUI();
             }
             else
-            {
                 await SetAdapter();
-            }
         }
     }
 }

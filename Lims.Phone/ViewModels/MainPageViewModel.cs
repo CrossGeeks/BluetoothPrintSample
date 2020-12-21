@@ -1,6 +1,9 @@
 ﻿using Lims.Phone.Services;
 using Lims.Phone.Views;
+using Shiny.BluetoothLE;
+using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,10 +16,10 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 是否已登录标志位
         /// </summary>
-        public bool IsLogin 
+        public bool IsLogin
         {
             get { return _islogin; }
-            set 
+            set
             {
                 _islogin = value;
                 OnPropertyChanged();
@@ -27,10 +30,10 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 登录或登出页面名称
         /// </summary>
-        public string LoginOrLogout 
+        public string LoginOrLogout
         {
             get { return _loginorlogout; }
-            set 
+            set
             {
                 _loginorlogout = value;
                 OnPropertyChanged();
@@ -41,10 +44,10 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 登录或登出图标名
         /// </summary>
-        public string FontIcon 
+        public string FontIcon
         {
             get { return _fonticon; }
-            set 
+            set
             {
                 _fonticon = value;
                 OnPropertyChanged();
@@ -55,10 +58,10 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 登录或登出文本
         /// </summary>
-        public string LoginOrLogoutText 
+        public string LoginOrLogoutText
         {
             get { return _loginorlogouttext; }
-            set 
+            set
             {
                 _loginorlogouttext = value;
                 OnPropertyChanged();
@@ -69,10 +72,10 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 账号
         /// </summary>
-        public string Account 
+        public string Account
         {
             get { return _account; }
-            set 
+            set
             {
                 _account = value;
                 OnPropertyChanged();
@@ -83,24 +86,24 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 公司名称
         /// </summary>
-        public string Company 
+        public string Company
         {
             get { return _company; }
-            set 
+            set
             {
                 _company = value;
                 OnPropertyChanged();
-            } 
+            }
         }
 
         private string _name;
         /// <summary>
         /// 名称
         /// </summary>
-        public string Name 
+        public string Name
         {
             get { return _name; }
-            set 
+            set
             {
                 _name = value;
                 OnPropertyChanged();
@@ -122,10 +125,10 @@ namespace Lims.Phone.ViewModels
         /// <summary>
         /// 默认打印机名称
         /// </summary>
-        public string PrintName 
+        public string PrintName
         {
             get { return _printname; }
-            set 
+            set
             {
                 _printname = value;
                 OnPropertyChanged();
@@ -136,7 +139,9 @@ namespace Lims.Phone.ViewModels
         readonly ICommand tapCommand;
 
         //打印机设置需要的命令事件
-        public ICommand CheckPermissionsCommand { get; set; }
+        ICommand GetDeviceListCommand { get; set; }
+        ICommand SetAdapterCommand { get; set; }
+        ICommand CheckPermissionsCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -145,11 +150,49 @@ namespace Lims.Phone.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        IDisposable _scanDisposable, _connectedDisposable = null;
+        IBleManager _centralManager = Shiny.ShinyHost.Resolve<IBleManager>();
+
         public MainPageViewModel()
         {
             tapCommand = new Command(OnTapped);
-            //蓝牙设备检查调用，必须放在主页面，否则不起作用
-            BlueToothPrinter.CheckPermissions();
+
+            PrintName = Properties.Get("defaultprinter").ToString().Trim();
+            if (!string.IsNullOrEmpty(PrintName))
+            {
+                _connectedDisposable = _centralManager.GetConnectedPeripherals().Subscribe(scanResult => 
+                {
+                    scanResult.ToList().ForEach(item => 
+                    {
+                        if(!string.IsNullOrEmpty(item.Name) && (item.Name == PrintName))
+                            _centralManager.StopScan();
+
+                        _scanDisposable.Dispose();
+                    });
+                });
+
+                if (_centralManager.IsScanning)
+                    _centralManager.StopScan();
+                if (_centralManager.Status == Shiny.AccessState.Available && !_centralManager.IsScanning)
+                {
+                    _scanDisposable = _centralManager.ScanForUniquePeripherals().Subscribe(scanResult =>
+                    {
+                        if (!string.IsNullOrEmpty(PrintName) && !BlueToothPrinter.Peripherals.Contains(scanResult))
+                        {
+                            BlueToothPrinter.Peripherals.Add(scanResult);
+                        }
+                        BlueToothPrinter.SelectedPeripheral = null;
+                    });
+                }
+            }
+            else
+            {
+                GetDeviceListCommand = new Command(BlueToothPrinter.GetDeviceList);
+                SetAdapterCommand = new Command(async () => await BlueToothPrinter.SetAdapter());
+                CheckPermissionsCommand = new Command(async () => await BlueToothPrinter.CheckPermissions());
+                //蓝牙设备检查调用，必须放在主页面，否则不起作用
+                CheckPermissionsCommand.Execute(null);
+            }
         }
 
         public ICommand TapCommand
@@ -161,7 +204,7 @@ namespace Lims.Phone.ViewModels
         {
             Page page;
 
-            switch(obj.ToString().ToUpper().Trim())
+            switch (obj.ToString().ToUpper().Trim())
             {
                 case "SHIPPING":
                     page = new ShippingPage();
