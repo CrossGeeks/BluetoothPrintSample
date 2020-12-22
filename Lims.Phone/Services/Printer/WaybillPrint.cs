@@ -22,7 +22,7 @@ namespace Lims.Phone.Services.Printer
             IPeripheral peripheral = BlueToothPrinter.SelectedPeripheral;
 
             ConnectPrinter(peripheral);
-            Task.Delay(10000);
+            //Task.Delay(10000);
             Print(viewModel);
         }
 
@@ -170,9 +170,7 @@ namespace Lims.Phone.Services.Printer
         private static void ConnectPrinter(IPeripheral peripheral)
         {
             if (!peripheral.IsConnected())
-            {
                 peripheral.Connect();
-            }
 
             peripheral.RequestMtu(512);
             _perifDisposable = peripheral.WhenAnyCharacteristicDiscovered().Subscribe((characteristic) =>
