@@ -233,6 +233,20 @@ namespace Lims.Phone.ViewModels
             }
         }
 
+        private string _totalshippingcost;
+        /// <summary>
+        /// 总运费
+        /// </summary>
+        public string TotalShippingCost
+        {
+            get { return _totalshippingcost; }
+            set 
+            {
+                _totalshippingcost = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _paymentmethods;
         /// <summary>
         /// 付款方式

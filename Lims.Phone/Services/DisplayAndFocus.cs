@@ -11,7 +11,6 @@ namespace Lims.Phone.Services
         {
             string message = string.Empty;
             string controllername = string.Empty;
-            int i = 0;
 
             controllername = errors[1].PropertyName;
             message = errors[1].ErrorMessage;

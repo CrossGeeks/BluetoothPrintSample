@@ -46,6 +46,17 @@ namespace Lims.Phone.Services.Waybill
             //应收款
             shippingViewModel.AccountsReceivable = ysk.ToString().Trim();
 
+            //计算总运费，计算公式 总运费=运费+保价费+手续费+提货费+工本费+垫付款+送货费
+            decimal TotalShippingCost = Math.Floor(Convert.ToDecimal(shippingViewModel.FreightRates) 
+                                                    +bjf 
+                                                    +0 
+                                                    +0
+                                                    +0
+                                                    +0 
+                                                    +Convert.ToDecimal(shippingViewModel.DeliveryFees)
+                                                    );
+            shippingViewModel.TotalShippingCost = TotalShippingCost.ToString().Trim();
+            
             string ydinfo = String.Format(
                 "运单号={0}&发货站点={1}&发站城市={2}&提货网点={3}&目的地={4}&所在地={5}&提货方式={6}&货物名称={7}&件数={8}&收货人={9}&收货人电话={10}&托运人={11}&托运人电话={12}&代收金额={13}&垫付款={14}&运费={15}&总运费={16}&欠返={17}&是否回单={18}&保价金额={19}&保价费={20}&手续费={21}&提货费={22}&送货费={23}&工本费={24}&应收款={25}&付款方式={26}&提付={27}&现付={28}&回付={29}&经办人={30}&托运日期={31}&到站城市={32}&中转方式={33}&条码号={34}&提货电话={35}&到站电话={36}&备注={37}&",
                 shippingViewModel.WaybillNumber.ToString().Trim(),//{0}运单号码
